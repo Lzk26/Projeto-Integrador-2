@@ -1,23 +1,21 @@
 // src/components/Header.jsx
-import { Link } from "react-router-dom";
-
-export default function Header() {
+export default function Topo() {
   return (
     <header>
       <div className="header-container">
         
         {/* Espaço reservado para logo */}
         <div className="header-logo">
-          {/* Coloque sua logo aqui */}
+          <img src="Logo.png" alt="Logo" />
         </div>
 
         {/* Menu de navegação */}
         <nav className="header-nav">
           <ul>
-            <li><Link to="/">Destaque</Link></li>
-            <li><Link to="/promocoes">Promoções</Link></li>
-            <li><Link to="/categorias">Categorias</Link></li>
-            <li><Link to="/contato">Contato</Link></li>
+            <li><a href="#">Destaques</a></li>
+            <li><a href="#">PC</a></li>
+            <li><a href="#">Promoções</a></li>
+            <li></li>
           </ul>
         </nav>
 
