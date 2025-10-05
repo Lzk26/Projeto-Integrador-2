@@ -1,29 +1,35 @@
-// src/components/Header.jsx
+import './Topo.css';
 export default function Topo() {
   return (
     <header>
-      <div className="header-container">
-        
-        {/* Espaço reservado para logo */}
-        <div className="header-logo">
-          <img src="Logo.png" alt="Logo" />
-        </div>
+      {/* LOGO */}
+      <div className="logo">
+        <img src="/Logo.png" alt="BackDoorsLogo" />
+      </div>
 
-        {/* Menu de navegação */}
-        <nav className="header-nav">
-          <ul>
-            <li><a href="#">Destaques</a></li>
-            <li><a href="#">PC</a></li>
-            <li><a href="#">Promoções</a></li>
-            <li></li>
-          </ul>
-        </nav>
+      {/* MENU */}
+      <nav>
+        <a href="#">Destaques</a>
+        <a href="#">PC</a>
+        <a href="#">Promoções</a>
+      </nav>
 
-        {/* Espaço reservado para ações (ex: carrinho, login) */}
-        <div className="header-actions">
-          {/* Coloque os botões/ícones que precisar */}
-        </div>
+      {/* BARRA DE PESQUISA */}
+      <div className="search-bar">
+        <input type="text" placeholder="Buscar" />
+        <img src="/src/assets/search.png" alt="Buscar" className="icon" />
+      </div>
 
+      {/* BOTÕES À DIREITA */}
+      <div className="header-right">
+        <button className="cart-btn">
+          <img src="/src/assets/Cart.png" alt="Carrinho" className="icon" />
+          0
+        </button>
+        <button className="login-btn">
+          <img src="/src/assets/User.png" alt="Usuário" className="icon" />
+          Entrar
+        </button>
       </div>
     </header>
   );
