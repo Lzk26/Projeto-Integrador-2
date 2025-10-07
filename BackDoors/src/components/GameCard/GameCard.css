@@ -1,62 +1,121 @@
 .game-card {
-  background-color: #1a0b2e;
-  border-radius: 14px;
+  width: 380px;
+  background: #6c00ff;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(108, 0, 255, 0.4);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .game-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(155, 0, 255, 0.6);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
 }
 
-.game-card-image {
+.game-image {
   width: 100%;
   height: 160px;
-  background-color: #2b1646;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #aaa;
-  font-size: 0.8rem;
+  overflow: hidden;
 }
 
-.game-card-image img {
+.game-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity 0.3s ease, transform 0.4s ease;
 }
 
-.game-card-info {
-  padding: 15px;
+.game-card:hover .game-image img {
+  opacity: 0.85;
+  transform: scale(1.05);
+}
+
+.game-info {
+  background: #6c00ff;
+  color: white;
+  padding: 14px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  justify-content: space-between;
+  min-height: 130px;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
-.game-card-info h3 {
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
+.game-info h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  line-height: 1.4;
 }
 
-.game-card-info .price {
-  color: #b479ff;
-  font-size: 0.9rem;
+.price-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
-.game-card-info button {
-  background-color: #6c00ff;
+.discount {
+  background: black;
   color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.price {
+  background: white;
+  color: black;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+/* === BOTÕES NA PARTE INFERIOR === */
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.game-card:hover .buttons {
+  opacity: 1;
+  max-height: 40px;
+  margin-top: 8px;
+}
+
+.favorite-btn,
+.buy-btn {
   border: none;
   border-radius: 8px;
-  padding: 6px 0;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  padding: 6px 14px;
+  transition: all 0.3s ease;
 }
 
-.game-card-info button:hover {
-  background-color: #8a2eff;
+/* Cores dos botões */
+.favorite-btn {
+  background: #fff;
+  color: #000;
+}
+
+.favorite-btn:hover {
+  background: #ff004c;
+  color: white;
+}
+
+.buy-btn {
+  background: white;
+  color: black;
+}
+
+.buy-btn:hover {
+  background: #9d5cff;
+  color: white;
 }

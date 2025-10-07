@@ -10,10 +10,17 @@ const Home = () => {
       </section>
 
       {/* Seção: Promoções */}
-      <section className="section">
-        <h2>Promoções imperdíveis</h2>
-        <div className="card-grid">
-          <GameCard />
+      <section className="mt-10 px-6">
+        <h2 className="text-2xl font-bold mb-4">Promoções imperdíveis</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" >
+          <GameCard 
+          title="The Elder Scrolls IV: Oblivion
+          Remastered"
+          price="211,92"
+          discount="20"
+          image="/src/assets/Oblivion.png"
+          
+          />
           <GameCard />
           <GameCard />
           <GameCard />
@@ -26,9 +33,9 @@ const Home = () => {
       </section>
 
       {/* Seção: Mais populares */}
-      <section className="section">
-        <h2>Mais populares</h2>
-        <div className="card-grid">
+      <section className="mt-10 px-6">
+        <h2 className="text-2xl font-bold mb-4">Mais populares</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           <GameCard />
           <GameCard />
           <GameCard />
