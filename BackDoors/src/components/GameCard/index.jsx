@@ -1,26 +1,57 @@
 import './GameCard.css';
+import { FaWindows, FaClock, FaHeart, FaShoppingCart } from 'react-icons/fa';
+import { useState } from 'react';
 
-function GameCard({ image, title, price, discount }) {
+export default function GameCard({ title, price, discount, image }) {
+  const [favorited, setFavorited] = useState(false);
+
   return (
-    <div className="game-card">
-      <div className="game-image">
-        <img src={image} alt={title} />
+    <div className="game-card group">
+      {/* Topo */}
+      <div className="game-card-header">
+        <span className="platform">Steam</span>
       </div>
 
-      <div className="game-info">
-        <h3>{title}</h3>
-        <div className="price-box">
-          <span className="discount">-{discount}%</span>
-          <span className="price">R$ {price}</span>
+      {/* Imagem */}
+      <div className="image-container">
+        <img src={image} alt={title} className="game-card-image" />
+
+        {/* Botão de favoritar (agora no canto inferior direito) */}
+        <button
+          className={`favorite-btn ${favorited ? 'favorited' : ''}`}
+          onClick={(e) => {
+            e.preventDefault();
+            setFavorited(!favorited);
+          }}
+        >
+          <FaHeart />
+        </button>
+      </div>
+
+      {/* Conteúdo */}
+      <div className="game-card-content">
+        <h3 className="game-card-title">{title}</h3>
+
+        <div className="game-card-platform">
+          <FaWindows className="icon" />
+          <span>Windows</span>
         </div>
 
-        <div className="buttons">
-          <button className="favorite-btn">♥</button>
-          <button className="buy-btn">Comprar</button>
+        <div className="game-card-timer">
+          <FaClock className="icon" />
+          <span>02d 01:15:12</span>
+        </div>
+
+        <div className="game-card-bottom">
+          <span className="discount-badge">-{discount}%</span>
+
+          {/* Caixa de preço ampliada */}
+          <div className="price-box">
+            <FaShoppingCart className="cart-icon" />
+            <span className="game-card-price">R$ {price}</span>
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-export default GameCard;

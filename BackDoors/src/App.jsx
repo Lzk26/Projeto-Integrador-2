@@ -1,17 +1,18 @@
-import './App.css'
-import Topo from './components/Topo'
-import Home from './pages/Home'
-import Footer from './components/Footer'
+import './App.css';
+import Topo from './components/Topo';
+import Footer from './components/Footer';
+import Routers from './Routers';
 
 function App() {
-
   return (
-    <div>
+    <div className="app-root">
       <Topo />
-      <Home />
+      <main className="app-main">
+        <Routers />
+      </main>
       <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

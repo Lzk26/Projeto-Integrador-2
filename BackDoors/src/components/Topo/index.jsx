@@ -1,35 +1,35 @@
+import { Link } from 'react-router-dom';
+import logo from '/public/Logo.png';
+import search from '../../assets/search.png';
+import cart from '../../assets/Cart.png';
+import user from '../../assets/User.png';
 import './Topo.css';
+
 export default function Topo() {
   return (
-    <header>
-      {/* LOGO */}
-      <div className="logo">
-        <img src="/Logo.png" alt="BackDoorsLogo" />
-      </div>
+    <header className="topo">
+      {/* Logo */}
+      <Link to="/" className="logo-area">
+        <img src={logo} alt="Trapdoor Logo" className="logo" />
+        <h1 className="logo-text">Trapdoor</h1>
+      </Link>
 
-      {/* MENU */}
-      <nav>
-        <a href="#">Destaques</a>
-        <a href="#">PC</a>
-        <a href="#">Promoções</a>
+      {/* Navegação */}
+      <nav className="menu">
+        <Link to="/" className="menu-link">Início</Link>
+        <Link to="/carrinho" className="menu-link">Carrinho</Link>
+        <Link to="/usuario" className="menu-link">Usuário</Link>
       </nav>
 
-      {/* BARRA DE PESQUISA */}
-      <div className="search-bar">
-        <input type="text" placeholder="Buscar" />
-        <img src="/src/assets/search.png" alt="Buscar" className="icon" />
-      </div>
-
-      {/* BOTÕES À DIREITA */}
-      <div className="header-right">
-        <button className="cart-btn">
-          <img src="/src/assets/Cart.png" alt="Carrinho" className="icon" />
-          0
-        </button>
-        <button className="login-btn">
-          <img src="/src/assets/User.png" alt="Usuário" className="icon" />
-          Entrar
-        </button>
+      {/* Ícones */}
+      <div className="icons">
+        <img src={search} alt="Buscar" className="icon" />
+        <Link to="/carrinho">
+          <img src={cart} alt="Carrinho" className="icon" />
+        </Link>
+        <Link to="/usuario">
+          <img src={user} alt="Usuário" className="icon" />
+        </Link>
       </div>
     </header>
   );

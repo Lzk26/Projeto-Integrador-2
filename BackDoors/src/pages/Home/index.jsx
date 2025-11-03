@@ -1,69 +1,112 @@
-import GameCard from '../../components/GameCard'
-import './Home.css'
+import { Link } from "react-router-dom";
+import GameCard from '../../components/GameCard';
+import './Home.css';
 
 const Home = () => {
   return (
-    <div className="home">
+    <div className="page-container">
       {/* Banner principal */}
       <section className="banner">
-        <div className="banner-desconto"> <img src="/src/assets/BannerDescontoEpico.png" alt="Banner Principal" className="h-full object-cover rounded-xl" /></div>
+        <div className="banner-desconto">
+          <img
+            src="/src/assets/BannerDescontoEpico.png"
+            alt="Banner Principal"
+            className="banner-img"
+          />
+        </div>
       </section>
 
       {/* Seção: Promoções */}
-      <section className=" promoções mt-10 px-6">
-        <h2 className="text-4xl font-bold mb-4">Os mais esperados de 2025!</h2>
-        <p className="
-        ">O que 2025 guardou para você?</p>
-        <div className="grid grid-cols-4 place-items-center w-full" >
-          <GameCard 
-          title="The Elder Scrolls IV: Oblivion
-          Remastered"
-          price="211,92"
-          discount="20"
-          image="/src/assets/Oblivion.png"
-          />
-          <GameCard 
-          title="DOOM Eternal"
-          price="181,80"
-          discount="20"
-          image="/src/assets/DoomEternal.png"
-          />
-          <GameCard 
-          title="Indiana Jones and the Great Circle"
-          price="279,20"
-          discount="20"
-          image="/src/assets/IndianaJones.png"/>
-          <GameCard
-          title="Starfield"
-          price="179,40"
-          discount="40"
-          image="src/assets/Starfield.png"
-          />
-          
-          <GameCard />
+      <section className="promocoes">
+        <h2 className="title-large">Os mais esperados de 2025!</h2>
+        <p>O que 2025 guardou para você?</p>
 
-          <GameCard />
+        <div className="card-grid">
+          {/* Cada Link leva para a rota do jogo */}
+          <Link to="/jogo/oblivion">
+            <GameCard
+              title="The Elder Scrolls IV: Oblivion Remastered"
+              price="211,92"
+              discount="20"
+              image="/src/assets/Oblivion.png"
+            />
+          </Link>
 
-          <GameCard />
+          <Link to="/jogo/doom-eternal">
+            <GameCard
+              title="DOOM Eternal"
+              price="181,80"
+              discount="20"
+              image="/src/assets/DoomEternal.png"
+            />
+          </Link>
 
-          <GameCard />
-          
+          <Link to="/jogo/indiana-jones">
+            <GameCard
+              title="Indiana Jones and the Great Circle"
+              price="279,20"
+              discount="20"
+              image="/src/assets/IndianaJones.png"
+            />
+          </Link>
+
+          <Link to="/jogo/starfield">
+            <GameCard
+              title="Starfield"
+              price="179,40"
+              discount="40"
+              image="/src/assets/Starfield.png"
+            />
+          </Link>
         </div>
       </section>
 
       {/* Banner intermediário */}
       <section className="banner">
-        <div className="banner-promoção"><img src="/src/assets/BannerCupons.png" alt="Banner cupons" /></div>
+        <div className="banner-promoção">
+          <img src="/src/assets/BannerCupons.png" alt="Banner cupons" />
+        </div>
       </section>
 
       {/* Seção: Mais populares */}
       <section className="mt-10 px-6">
-        <h2 className="text-4xl font-bold mb-4">Tá na hora da ação!</h2>
-        <div className="grid grid-cols-4 place-items-center w-full">
-          <GameCard />
-          <GameCard />
-          <GameCard />
-          <GameCard />
+        <h2 className="title-large">Tá na hora da ação!</h2>
+        <div className="card-grid">
+          <Link to="/jogo/back4blood">
+            <GameCard
+              title="Back 4 Blood"
+              price="55,99"
+              discount="80"
+              image="/src/assets/Back4Blood.png"
+            />
+          </Link>
+
+          <Link to="/jogo/injustice2">
+            <GameCard
+              title="Injustice 2 - Legendary Edition"
+              price="55,99"
+              discount="80"
+              image="/src/assets/Injustice2.png"
+            />
+          </Link>
+
+          <Link to="/jogo/suicide-squad">
+            <GameCard
+              title="Suicide Squad: Kill the Justice League"
+              price="55,99"
+              discount="80"
+              image="/src/assets/SuicideSquad.png"
+            />
+          </Link>
+
+          <Link to="/jogo/injustice-gods">
+            <GameCard
+              title="Injustice: Gods Among Us Ultimate Edition"
+              price="17,99"
+              discount="80"
+              image="/src/assets/InjusticeGodAUs.png"
+            />
+          </Link>
         </div>
       </section>
     </div>
