@@ -18,6 +18,7 @@ export default function Topo() {
         <Link to="/" className="menu-link">Início</Link>
         <Link to="/carrinho" className="menu-link">Carrinho</Link>
         <Link to="/usuario" className="menu-link">Usuário</Link>
+        <Link to="/usuario" className="menu-link">Login</Link>
       </nav>
 
       {/* Ícones */}
@@ -28,6 +29,9 @@ export default function Topo() {
         </Link>
         <Link to="/usuario">
           <img src={user} alt="Usuário" className="icon" />
+        </Link>
+        <Link to="/Signin">
+          <img src={user} alt="Signin" className="icon" />
         </Link>
       </div>
     </header>
