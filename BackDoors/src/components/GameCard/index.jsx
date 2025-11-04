@@ -1,4 +1,3 @@
-import './GameCard.css';
 import { FaWindows, FaClock, FaHeart, FaShoppingCart } from 'react-icons/fa';
 import { useState } from 'react';
 
@@ -6,7 +5,7 @@ export default function GameCard({ title, price, discount, image }) {
   const [favorited, setFavorited] = useState(false);
 
   return (
-    <div className="game-card group">
+    <div className="game-card">
       {/* Topo */}
       <div className="game-card-header">
         <span className="platform">Steam</span>
@@ -16,7 +15,7 @@ export default function GameCard({ title, price, discount, image }) {
       <div className="image-container">
         <img src={image} alt={title} className="game-card-image" />
 
-        {/* Botão de favoritar (agora no canto inferior direito) */}
+        {/* Botão de favoritar*/}
         <button
           className={`favorite-btn ${favorited ? 'favorited' : ''}`}
           onClick={(e) => {

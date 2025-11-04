@@ -1,6 +1,6 @@
-import './Footer.css';
 import { FaInstagram, FaTiktok, FaDiscord, FaYoutube, FaTwitter, FaFacebook } from 'react-icons/fa';
 import logo from '/public/Logo.png';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -35,7 +35,9 @@ export default function Footer() {
           <ul className="footer-list">
             <li><a href="#" className="link-hover">Suporte</a></li>
             <li><a href="#" className="link-hover">Termos de Uso</a></li>
-            <li><a href="#" className="link-hover">Política de Privacidade</a></li>
+            <Link to="/politica-de-privacidade">
+              <li><a href="#" className="link-hover">Política de Privacidade</a></li>
+            </Link>
           </ul>
         </div>
 

@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import GameCard from '../../components/GameCard';
-import './Home.css';
 
 const Home = () => {
   return (
     <div className="page-container">
       {/* Banner principal */}
       <section className="banner">
-        <div className="banner-desconto">
+        <div className="banner-img-container">
           <img
             src="/src/assets/BannerDescontoEpico.png"
             alt="Banner Principal"
@@ -16,10 +15,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Seção: Promoções */}
-      <section className="promocoes">
+      {/* CARD JOGOS */}
+      <section className="">
         <h2 className="title-large">Os mais esperados de 2025!</h2>
-        <p>O que 2025 guardou para você?</p>
+        <p className="subtitle">O que 2025 guardou para você?</p>
 
         <div className="card-grid">
           {/* Cada Link leva para a rota do jogo */}
@@ -63,13 +62,17 @@ const Home = () => {
 
       {/* Banner intermediário */}
       <section className="banner">
-        <div className="banner-promoção">
-          <img src="/src/assets/BannerCupons.png" alt="Banner cupons" />
+        <div className="banner-img-container">
+          <img
+            src="/src/assets/BannerCupons.png"
+            alt="Banner secundário"
+            className="banner-img"
+          />
         </div>
       </section>
 
       {/* Seção: Mais populares */}
-      <section className="mt-10 px-6">
+      <section className="">
         <h2 className="title-large">Tá na hora da ação!</h2>
         <div className="card-grid">
           <Link to="/jogo/back4blood">

@@ -3,7 +3,6 @@ import logo from '/public/Logo.png';
 import search from '../../assets/search.png';
 import cart from '../../assets/Cart.png';
 import user from '../../assets/User.png';
-import './Topo.css';
 
 export default function Topo() {
   return (
