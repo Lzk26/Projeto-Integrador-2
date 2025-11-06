@@ -29,14 +29,14 @@
     @apply h-12 w-auto cursor-pointer hover:opacity-80 transition;
   }
   .logo-text {
-    @apply font-bold text-xl hidden sm:block;
+    @apply font-bold text-white text-xl ;
   }
 
   .menu {
-    @apply hidden md:flex items-center gap-8 font-semibold;
+    @apply hidden items-center gap-8 font-semibold md:flex; ;
   }
   .menu-link {
-    @apply hover:text-purple-200 transition;
+    @apply text-white;
   }
 
   .icons {
@@ -46,6 +46,14 @@
     @apply w-6 h-6 opacity-90 hover:opacity-100 cursor-pointer transition;
   }
 }
+
+  /* ========== Barra de pesquisa ========== */
+.search-bar {
+  @apply absolute right-14 top-1/2 -translate-y-1/2 
+  bg-white text-black rounded-full px-4 py-1 w-40
+  focus:w-56 transition-all duration-300 outline-none 
+}
+
 /* ========== HOME ========== */
 .page-container {
   @apply w-full max-w-7xl mx-auto;

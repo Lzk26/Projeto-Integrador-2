@@ -20,9 +20,18 @@ export default function Topo() {
         <Link to="/usuario" className="menu-link">Usuário</Link>
       </nav>
 
+      {/* Barra de pesquisa */}
+    
+        <input
+            type="Text"
+            placeholder="Pesquisar..."
+            className='SearchBar'
+            />
+   
+
+
       {/* Ícones */}
       <div className="icons">
-        <img src={search} alt="Buscar" className="icon" />
         <Link to="/carrinho">
           <img src={cart} alt="Carrinho" className="icon" />
         </Link>
