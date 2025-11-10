@@ -21,7 +21,7 @@ export default function UserPage() {
       <header className="user-topbar">
         <div className="top-left">
           <button
-            className="top-btn"
+            className="config-btn"
             onClick={() => window.history.back()}
           >
             <FaArrowLeft />
@@ -42,29 +42,26 @@ export default function UserPage() {
           </div>
         </div>
 
-      <Link to="/carrinho">
-          <div className="top-right">
+        <div className="top-right">
+          <Link to="/carrinho">
             <button className="icon-btn">
-              <img src={cart} alt="Carrinho" className="icon" />
+              <img src={cart} alt="Carrinho" className="cart-user" />
             </button>
-            <button className="icon-btn">
+          </Link>
+          <button className="config-btn">
             <FaCog />
           </button>
-          </div>
 
-          
-      </Link>
+        </div>
+      </header>
 
-      </header> 
-      
-        
+
       {/* ===== CONTEÚDO ===== */}
       <div className="user-layout">
         {/* ===== CONTEÚDO PRINCIPAL ===== */}
         <main
-          className={`user-library transition-all duration-500 ${
-            showStats ? "lg:w-[78%]" : "w-full"
-          }`}
+          className={`user-library transition-all duration-500 ${showStats ? "lg:w-[78%]" : "w-full"
+            }`}
         >
           <div className="library-header">
             <h2 className="library-title">Biblioteca recente</h2>
@@ -76,9 +73,8 @@ export default function UserPage() {
             >
               Estatísticas{" "}
               <FaChevronRight
-                className={`transition-transform duration-300 ${
-                  showStats ? "rotate-180" : "rotate-0"
-                }`}
+                className={`transition-transform duration-300 ${showStats ? "rotate-180" : "rotate-0"
+                  }`}
               />
             </button>
           </div>
@@ -124,11 +120,10 @@ export default function UserPage() {
 
         {/* ===== LATERAL DE ESTATÍSTICAS ===== */}
         <aside
-          className={`user-sidebar transition-all duration-500 ease-in-out ${
-            showStats
-              ? "translate-x-0 opacity-100 visible"
-              : "translate-x-full opacity-0 invisible"
-          }`}
+          className={`user-sidebar transition-all duration-500 ease-in-out ${showStats
+            ? "translate-x-0 opacity-100 visible"
+            : "translate-x-full opacity-0 invisible"
+            }`}
         >
           <div className="stat-list">
             <div className="stat-item">
