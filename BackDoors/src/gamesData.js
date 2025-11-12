@@ -7,30 +7,37 @@ export const gamesData = [
     price: "211,92",
     discount: "20",
     cover: "/src/assets/Oblivion.png",
-    video: "", // coloque o caminho do vídeo ou deixe vazio
+    video: "https://www.youtube.com/embed/wFJ3PZuAjK4",
+    thumbnails: [
+      "/src/assets/oblivion1.jpg",
+      "/src/assets/oblivion2.jpg",
+      "/src/assets/oblivion3.jpg",
+    ],
     requisitos: {
       minimos: [
-        "SO: Windows 10",
-        "Processador: Intel Core i5",
-        "Memória: 8 GB RAM",
-        "Placa de vídeo: GTX 1050 / RX 560",
+        "SO: Windows XP",
+        "Processador: Intel Core 2 Duo",
+        "Memória: 2 GB RAM",
+        "Placa de vídeo: NVIDIA GeForce 8800",
       ],
       recomendados: [
-        "SO: Windows 10",
-        "Processador: Intel Core i7",
-        "Memória: 16 GB RAM",
-        "Placa de vídeo: GTX 1660 / RX 6600",
-      ],
-    },
+        "SO: Windows 7",
+        "Processador: Intel Core i5",
+        "Memória: 4 GB RAM",
+        "Placa de vídeo: NVIDIA GeForce GTX 460",
+      ]
+    }
   },
+  
   {
     id: "doom-eternal",
     title: "DOOM Eternal",
-    description: "Enfrente hordas demoníacas no shooter mais frenético e brutal da atualidade.",
+    description:
+      "Enfrente hordas demoníacas no shooter mais frenético e brutal da atualidade.",
     price: "181,80",
     discount: "20",
     cover: "/src/assets/DoomEternal.png",
-    video: "",
+    video: "https://www.youtube.com/embed/2HOClc6Svg4", // exemplo: adicione outro vídeo se quiser
     requisitos: {
       minimos: [
         "SO: Windows 10",
@@ -49,11 +56,12 @@ export const gamesData = [
   {
     id: "starfield",
     title: "Starfield",
-    description: "Explore o universo com liberdade total neste RPG espacial da Bethesda.",
+    description:
+      "Explore o universo com liberdade total neste RPG espacial da Bethesda.",
     price: "179,40",
     discount: "40",
     cover: "/src/assets/Starfield.png",
-    video: "",
+    video: "https://www.youtube.com/embed/k2p3c8Eo9pA", // exemplo: trailer oficial de Starfield
     requisitos: {
       minimos: [
         "SO: Windows 10",

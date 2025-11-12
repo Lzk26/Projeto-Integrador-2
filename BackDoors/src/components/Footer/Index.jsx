@@ -35,9 +35,10 @@ export default function Footer() {
           <ul className="footer-list">
             <li><a href="#" className="link-hover">Suporte</a></li>
             <li><a href="#" className="link-hover">Termos de Uso</a></li>
-            <Link to="/politica-de-privacidade">
-              <li><a href="#" className="link-hover">Política de Privacidade</a></li>
-            </Link>
+            <Link to="/politica-de-privacidade" className="link-hover">
+  Política de Privacidade
+</Link>
+
           </ul>
         </div>
 
