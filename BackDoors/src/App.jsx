@@ -6,11 +6,14 @@ import Routers from './Routers';
 
 function App() {
   const location = useLocation();
-  const isUserPage = location.pathname === '/usuario';
+   const noHeaderRoutes = ["/login", "/cadastrar", "/usuario"];
+
+   const hideHeader = noHeaderRoutes.includes(location.pathname);
+
 
   return (
     <div className="app-root">
-      {!isUserPage && <Topo />}
+      {!hideHeader && <Topo />}
 
       <main className="app-main">
         <Routers />

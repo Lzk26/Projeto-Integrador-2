@@ -23,28 +23,35 @@
   }
 
   .logo-area {
-    @apply flex items-center gap-3;
+    @apply flex items-center gap-3 shrink-0;
   }
   .logo {
     @apply h-12 w-auto cursor-pointer hover:opacity-80 transition;
   }
   .logo-text {
-    @apply font-bold text-xl hidden sm:block;
+    @apply hover:text-purple-400 font-bold text-xl hidden sm:block text-white;
   }
 
   .menu {
-    @apply hidden md:flex items-center gap-8 font-semibold;
+    @apply hidden md:flex items-center gap-8 font-semibold flex-1 justify-center;
   }
   .menu-link {
-    @apply hover:text-purple-200 transition;
+    @apply hover:text-purple-400 transition text-white;
   }
 
   .icons {
-    @apply flex items-center gap-4;
+    @apply flex items-center mr-32  absolute right-0 top-1/2 -translate-y-1/2 
+    w-[260px] md:w-[320px] justify-end gap-3 shrink-0;
   }
   .icon {
-    @apply w-6 h-6 opacity-90 hover:opacity-100 cursor-pointer transition;
+    @apply w-6 h-6 opacity-90 hover:opacity-100 cursor-pointer transition ml-5 flex items-center;
   }
+  .search-input {
+    @apply bg-white/10 text-white px-3 py-1.5 rounded-lg border border-white/20 ml-2 outline-none focus:border-purple-400 transition-all duration-300;
+    width: 200px;
+  }
+
+
 }
 /* ========== HOME ========== */
 .page-container {
@@ -73,13 +80,6 @@ section {
 }
    
 /* ========== CARRINHO ========== */
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-  /* --- Página --- */
   .cart-page {
     @apply min-h-screen bg-black text-white px-6 md:px-12 lg:px-28 pb-16 flex flex-col gap-6;
     font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
@@ -180,8 +180,6 @@ section {
   .continue-btn--on {
     @apply bg-gradient-to-r from-indigo-700 to-purple-600 hover:from-indigo-600 hover:to-purple-500 text-white;
   }
-}
-
 
 /* ========== GAME PAGE ========== */
 
@@ -371,13 +369,18 @@ aspect-ratio: 16 / 9;
 
 /* ===== TOPO ===== */
 .user-topbar {
-  @apply flex justify-between items-center bg-gradient-to-r from-purple-900 to-purple-700 py-4 px-8;
+  @apply flex justify-between items-center bg-gradient-to-r from-[#5E17EB] to-[#350D85] py-4 px-8;
 }
 .top-left {
   @apply flex items-center gap-5;
 }
-.top-btn {
-  @apply bg-purple-800 hover:bg-purple-700 text-white text-lg p-2 rounded-md transition;
+
+.cart-user {
+  @apply w-6 h-6 hover:opacity-100 cursor-pointer transition flex items-center
+}
+
+.config-btn {
+  @apply  text-white text-lg p-2 rounded-md transition bg-purple-800  ;
 }
 .user-identity {
   @apply flex items-center gap-4;
@@ -602,6 +605,77 @@ aspect-ratio: 16 / 9;
   /* Data */
   .privacy-date {
     @apply text-xs text-gray-400 text-center mt-10 italic;
+  }
+
+  /* ========== Login PAGE ========== */
+  .LoginPage {
+    @apply grid grid-cols-1 lg:grid-cols-2 min-h-screen;
+  }
+
+  /* ===== LADO ESQUERDO ===== */
+  .LoginForm {
+    @apply flex flex-col items-center justify-center px-10 relative bg-white text-black;
+  }
+
+  /* Botão X */
+  .LoginExit {
+    @apply absolute top-6 left-6 text-xl font-bold text-black hover:text-purple-600 transition;
+  }
+
+  /* ===== FORM ===== */
+  .LoginForm form {
+    @apply w-full max-w-sm;
+  }
+
+  /* Título */
+  .LoginTitle {
+    @apply text-2xl font-bold text-center mb-8;
+  }
+
+  /* Labels */
+  .LoginLabel {
+    @apply block text-sm font-medium mb-1;
+  }
+
+  /* Inputs */
+  .LoginInput {
+    @apply w-full rounded-md border px-3 py-2 mb-2 border-gray-300
+    focus:ring-2 focus:ring-purple-400 focus:outline-none transition-colors duration-300;
+  }
+
+  /* Input com erro */
+  .LoginInput--error {
+    @apply border-red-500;
+  }
+
+  /* Mensagem de erro de campo */
+  .LoginError {
+    @apply text-xs text-red-600 mb-2;
+  }
+
+  /* Checkbox */
+  .LoginRemember {
+    @apply flex items-center gap-2 text-sm mt-3;
+  }
+
+  /* Erro global */
+  .LoginErrorGlobal {
+    @apply bg-red-100 text-red-700 text-sm p-2 rounded mt-4;
+  }
+
+  /* Botão */
+  .LoginButton {
+    @apply w-full mt-6 py-3 rounded-lg font-semibold text-white
+    transition bg-purple-700 hover:bg-purple-800;
+  }
+
+  .LoginButton--disabled {
+    @apply bg-gray-400 cursor-not-allowed opacity-70;
+  }
+
+  /* ===== LADO DIREITO ===== */
+  .LoginArte {
+    @apply hidden lg:block bg-cover bg-center;
   }
 
 /* ========== FOOTER ========== */
