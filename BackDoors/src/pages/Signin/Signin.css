@@ -1,122 +1,171 @@
+/* ----- LAYOUT GERAL ----- */
 .signin-wrapper {
   display: flex;
-  height: 100vh;
   width: 100%;
+  height: 100vh;
+  background: #fff;
+  overflow: hidden;
 }
 
+/* ----- LADO ESQUERDO ----- */
 .signin-left {
-  flex: 1;
-  background-color: #fff;
+  width: 65%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #fff;
 }
 
-.signin-content {
-  width: 320px;
-  text-align: center;
-}
-
-.signin-logo {
-  width: 90px;
-  margin-bottom: 15px;
-}
-
-.signin-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-.signin-form input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  border: none;
-  border-radius: 4px;
-  background-color: #f2f2f2;
-}
-
-.social-login {
+.signin-box {
+  width: 380px;
   display: flex;
-  justify-content: space-between;
-  margin: 15px 0;
+  flex-direction: column;
+  align-items: center;
 }
 
-.btn-facebook,
-.btn-google,
-.btn-apple {
-  flex: 1;
-  margin: 0 4px;
-  height: 36px;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  color: white;
-  cursor: pointer;
+/* ----- LOGO ----- */
+.signin-logo {
+  width: 130px;
+  margin-bottom: 12px;
 }
 
-.btn-facebook {
-  background-color: #1877f2;
-}
-.btn-google {
-  background-color: #f2f2f2;
+/* ----- TÍTULO ----- */
+.signin-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 18px 0 22px;
   color: #000;
 }
-.btn-apple {
-  background-color: #000;
+
+/* ----- INPUTS ----- */
+.input-box {
+  width: 100%;
+  padding: 12px;
+  background: #f3f3f3;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  outline: none;
 }
 
-.remember {
+/* ----- BOTÕES SOCIAIS ----- */
+.social {
+  width: 100%;
+  height: 42px;
+  border: none;
+  border-radius: 6px;
+  margin: 6px 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
-  color: #444;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.remember input {
-  margin-right: 6px;
+/* Ícones */
+.social svg {
+  font-size: 18px;
 }
 
+/* FACEBOOK */
+.facebook {
+  background: #1877f2;
+  color: #fff;
+}
+
+/* GOOGLE (com ícone FcGoogle colorido) */
+.google {
+  background: #fff;
+  color: #000;
+  border: 1px solid #ddd;
+}
+
+.icon-google {
+  font-size: 20px !important;
+}
+
+/* APPLE */
+.apple {
+  background: #000;
+  color: #fff;
+}
+
+/* Hover suave */
+.social:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* ----- CHECKBOX ----- */
+.remember-area {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 10px 0 20px;
+  font-size: 13px;
+  color: #000;
+}
+
+/* ----- BOTÃO AVANÇAR ----- */
 .btn-continue {
   width: 100%;
-  padding: 10px;
-  margin-top: 18px;
-  background: none;
-  border: 1px solid #999;
+  padding: 12px;
+  background: #eaeaea;
+  border: 1px solid #ccc;
   border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 .btn-continue:hover {
-  border-color: #000;
+  background: #dcdcdc;
 }
 
+/* ----- LINKS ----- */
 .login-links {
-  margin-top: 15px;
-  font-size: 0.9rem;
-  color: #555;
+  width: 100%;
+  margin-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
 }
 
 .login-links a {
-  color: #000;
   text-decoration: none;
-  font-weight: 600;
+  color: #333;
+  font-weight: 500;
 }
 
+/* ----- BANNER LADO DIREITO ----- */
 .signin-right {
-  flex: 1;
-  background-color: #0c0014;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+  width: 35%;
+  height: 100%;
 }
 
 .signin-banner {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.help-link {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #959595;
+  font-weight: 600;
+}
+
+.create-account-link {
+  margin-top: 5px;
+  display: block;
+  font-size: 14px;
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
 }
