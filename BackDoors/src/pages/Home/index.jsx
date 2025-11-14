@@ -1,7 +1,29 @@
 import { Link } from "react-router-dom";
 import GameCard from '../../components/GameCard';
+import { useEffect, useState } from 'react';
+import { getGames } from "../../api";
+
 
 const Home = () => {
+
+  const [games, setGames] = useState([]);
+
+  const groups = [];
+for (let i = 0; i < games.length; i += 4) {
+  groups.push(games.slice(i, i + 4));
+}
+
+useEffect(() => {
+  async function load() {
+    const data = await getGames();
+    setGames(data);
+  }
+  load();
+}, []);
+
+
+
+
   return (
     <div className="page-container">
       {/* Banner principal */}
@@ -20,44 +42,33 @@ const Home = () => {
         <h2 className="title-large">Os mais esperados de 2025!</h2>
         <p className="subtitle">O que 2025 guardou para você?</p>
 
-        <div className="card-grid">
-          {/* Cada Link leva para a rota do jogo */}
-          <Link to="/jogo/oblivion">
-            <GameCard
-              title="The Elder Scrolls IV: Oblivion Remastered"
-              price="211,92"
-              discount="20"
-              image="/src/assets/Oblivion.png"
-            />
-          </Link>
+{/* LINHA 1 */}
+       <div className="card-grid">
+  {groups[0]?.map((game) => (
+    <Link key={game.id} to={`/jogo/${game.id}`}>
+      <GameCard
+        title={game.title}
+        price={game.price}
+        discount={game.discount}
+        image={game.cover}
+      />
+    </Link>
+  ))}
+</div>
 
-          <Link to="/jogo/doom-eternal">
-            <GameCard
-              title="DOOM Eternal"
-              price="181,80"
-              discount="20"
-              image="/src/assets/DoomEternal.png"
-            />
-          </Link>
-
-          <Link to="/jogo/indiana-jones">
-            <GameCard
-              title="Indiana Jones and the Great Circle"
-              price="279,20"
-              discount="20"
-              image="/src/assets/IndianaJones.png"
-            />
-          </Link>
-
-          <Link to="/jogo/starfield">
-            <GameCard
-              title="Starfield"
-              price="179,40"
-              discount="40"
-              image="/src/assets/Starfield.png"
-            />
-          </Link>
-        </div>
+{/* LINHA 2 */}
+<div className="card-grid">
+  {groups[1]?.map((game) => (
+    <Link key={game.id} to={`/jogo/${game.id}`}>
+      <GameCard
+        title={game.title}
+        price={game.price}
+        discount={game.discount}
+        image={game.cover}
+      />
+    </Link>
+  ))}
+</div>
       </section>
 
       {/* Banner intermediário */}
@@ -74,43 +85,33 @@ const Home = () => {
       {/* Seção: Mais populares */}
       <section className="">
         <h2 className="title-large">Tá na hora da ação!</h2>
-        <div className="card-grid">
-          <Link to="/jogo/back4blood">
-            <GameCard
-              title="Back 4 Blood"
-              price="55,99"
-              discount="80"
-              image="/src/assets/Back4Blood.png"
-            />
-          </Link>
+        {/* LINHA 3 */}
+<div className="card-grid">
+  {groups[2]?.map((game) => (
+    <Link key={game.id} to={`/jogo/${game.id}`}>
+      <GameCard
+        title={game.title}
+        price={game.price}
+        discount={game.discount}
+        image={game.cover}
+      />
+    </Link>
+  ))}
+</div>
 
-          <Link to="/jogo/injustice2">
-            <GameCard
-              title="Injustice 2 - Legendary Edition"
-              price="55,99"
-              discount="80"
-              image="/src/assets/Injustice2.png"
-            />
-          </Link>
-
-          <Link to="/jogo/suicide-squad">
-            <GameCard
-              title="Suicide Squad: Kill the Justice League"
-              price="55,99"
-              discount="80"
-              image="/src/assets/SuicideSquad.png"
-            />
-          </Link>
-
-          <Link to="/jogo/injustice-gods">
-            <GameCard
-              title="Injustice: Gods Among Us Ultimate Edition"
-              price="17,99"
-              discount="80"
-              image="/src/assets/InjusticeGodAUs.png"
-            />
-          </Link>
-        </div>
+{/* LINHA 4 */}
+<div className="card-grid">
+  {groups[3]?.map((game) => (
+    <Link key={game.id} to={`/jogo/${game.id}`}>
+      <GameCard
+        title={game.title}
+        price={game.price}
+        discount={game.discount}
+        image={game.cover}
+      />
+    </Link>
+  ))}
+</div>
       </section>
     </div>
   );

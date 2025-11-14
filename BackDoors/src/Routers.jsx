@@ -6,7 +6,7 @@ import GamePage from "./pages/GamePage";
 import User from "./pages/User";
 import Payment from "./pages/Payment";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-import Signin from "./pages/SignIn";
+import Signin from "./pages/Signin";
 import SignUp from "./pages/SignUp";
 
 import AuthGuard from "./authGuard";

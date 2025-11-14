@@ -1,108 +1,79 @@
-import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Signin.css";
-import trapdoorBanner from "/src/assets/trapdoorbanner.png";
-import { FaFacebookF, FaApple } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 
 export default function Signin() {
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [senha, setSenha] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [erro, setErro] = useState("");
 
-  const handleLogin = (e) => {
+  async function handleLogin(e) {
     e.preventDefault();
-    setError("");
+    setErro("");
 
-    if (username.length < 3) {
-      return setError("Nome de usuário muito curto.");
+    const res = await fetch("http://localhost:3333/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password: senha }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      setErro(data.error);
+      return;
     }
 
-    if (senha.length < 4) {
-      return setError("Senha muito curta.");
-    }
-
-    setLoading(true);
-
-    setTimeout(() => {
-      localStorage.setItem("trapdoor_token", "logado123");
-
-      navigate("/usuario");
-    }, 800);
-  };
+    localStorage.setItem("trapdoor_token", data.token);
+    navigate("/usuario");
+  }
 
   return (
-    <div className="signin-wrapper">
+    <div className="signin-container">
+      <div className="signin-card">
 
-      <div className="signin-left">
-        <div className="signin-box">
+        <img 
+          src="/src/assets/trapdoorbanner.png"
+          alt="Trapdoor"
+          className="signin-banner"
+        />
 
-          <img src="/Logo.png" className="signin-logo" alt="Trapdoor Logo" />
+        <h2>Entrar</h2>
+        <p>Acesse sua conta</p>
 
-          <h2 className="signin-title">Fazer login</h2>
+        {erro && <p className="error">{erro}</p>}
 
-          <form onSubmit={handleLogin} className="signin-form">
+        <form onSubmit={handleLogin}>
+          <input
+            type="text"
+            placeholder="Usuário"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
 
-            <input
-              type="text"
-              placeholder="Nome de usuário"
-              className={`input-box ${error && username.length < 3 ? "input-error" : ""}`}
-              onChange={(e) => setUsername(e.target.value)}
-            />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            required
+          />
 
-            <input
-              type="password"
-              placeholder="Senha"
-              className={`input-box ${error && senha.length < 4 ? "input-error" : ""}`}
-              onChange={(e) => setSenha(e.target.value)}
-            />
+          <button className="btn-login" type="submit">
+            Entrar
+          </button>
+        </form>
 
-            {error && <p className="error-message">{error}</p>}
-
-            <button type="button" className="social facebook">
-              <FaFacebookF />
-              <span>Facebook</span>
-            </button>
-
-            <button type="button" className="social google">
-              <FcGoogle className="google-icon" />
-              <span>Google</span>
-            </button>
-
-            <button type="button" className="social apple">
-              <FaApple />
-              <span>Apple</span>
-            </button>
-
-            <div className="remember-area">
-              <input type="checkbox" id="remember" />
-              <label htmlFor="remember">Manter login</label>
-            </div>
-
-            <button type="submit" className="btn-continue" disabled={loading}>
-              {loading ? "Carregando..." : "AVANÇAR →"}
-            </button>
-
-          </form>
-
-          <div className="signin-links">
-            <p className="help-link">NÃO CONSEGUE FAZER LOGIN?</p>
-
-            <Link to="/signup" className="create-account-link">
-              CRIAR CONTA
-            </Link>
-          </div>
-
-        </div>
+        <span className="register-text">
+          Não tem conta?{" "}
+          <Link to="/cadastrar" className="link-hover">
+            Criar conta
+          </Link>
+        </span>
       </div>
-
-      <div className="signin-right">
-        <img src={trapdoorBanner} className="signin-banner" />
-      </div>
-
     </div>
   );
 }

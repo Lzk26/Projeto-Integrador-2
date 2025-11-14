@@ -1,114 +1,87 @@
-import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./SignUp.css";
-import trapdoorBanner from "/src/assets/trapdoorbanner.png";
-
-import { FaFacebookF, FaApple } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 
 export default function SignUp() {
   const navigate = useNavigate();
 
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [user, setUser] = useState("");
   const [senha, setSenha] = useState("");
-  const [confirmar, setConfirmar] = useState("");
+  const [erro, setErro] = useState("");
 
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const validarEmail = (email) => /\S+@\S+\.\S+/.test(email);
-
-  const handleRegister = (e) => {
+  async function handleRegister(e) {
     e.preventDefault();
-    setError("");
+    setErro("");
 
-    if (!validarEmail(email)) return setError("E-mail inválido.");
-    if (user.length < 3) return setError("Nome de usuário muito curto.");
-    if (senha.length < 4) return setError("Senha muito curta.");
-    if (senha !== confirmar) return setError("As senhas não coincidem.");
+    const res = await fetch("http://localhost:3333/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, email, password: senha }),
+    });
 
-    setLoading(true);
+    const data = await res.json();
 
-    setTimeout(() => {
-      localStorage.setItem("trapdoor_token", "logado123");
-      navigate("/usuario");
-    }, 900);
-  };
+    if (!res.ok) {
+      setErro(data.error);
+      return;
+    }
+
+    alert("Conta criada com sucesso!");
+    navigate("/signin");
+  }
 
   return (
-    <div className="signup-wrapper">
-      <div className="signup-left">
-        <div className="signup-box">
+    <div className="signin-container">
+      <div className="signin-card">
 
-          <img src="/Logo.png" className="signup-logo" />
+        <img 
+          src="/src/assets/trapdoorbanner.png"
+          alt="Trapdoor"
+          className="signin-banner"
+        />
 
-          <h2 className="signup-title">Criar conta</h2>
+        <h2>Criar Conta</h2>
+        <p>Preencha os dados para continuar</p>
 
-          <form onSubmit={handleRegister}>
+        {erro && <p className="error">{erro}</p>}
 
-            <input
-              type="email"
-              placeholder="E-mail"
-              className="input-box"
-              onChange={(e) => setEmail(e.target.value)}
-            />
+        <form onSubmit={handleRegister}>
+          <input
+            type="text"
+            placeholder="Usuário"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
 
-            <input
-              type="text"
-              placeholder="Nome de usuário"
-              className="input-box"
-              onChange={(e) => setUser(e.target.value)}
-            />
+          <input
+            type="email"
+            placeholder="E-mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
 
-            <input
-              type="password"
-              placeholder="Senha"
-              className="input-box"
-              onChange={(e) => setSenha(e.target.value)}
-            />
+          <input
+            type="password"
+            placeholder="Senha"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            required
+          />
 
-            <input
-              type="password"
-              placeholder="Confirmar senha"
-              className="input-box"
-              onChange={(e) => setConfirmar(e.target.value)}
-            />
+          <button className="btn-login" type="submit">
+            Criar Conta
+          </button>
+        </form>
 
-            {error && <p className="error-message">{error}</p>}
-
-            <button type="button" className="social facebook">
-              <FaFacebookF /> <span>Facebook</span>
-            </button>
-
-            <button type="button" className="social google">
-              <FcGoogle className="google-icon" /> <span>Google</span>
-            </button>
-
-            <button type="button" className="social apple">
-              <FaApple /> <span>Apple</span>
-            </button>
-
-            <div className="remember-area">
-              <input type="checkbox" id="save" />
-              <label htmlFor="save">Salvar dados</label>
-            </div>
-
-            <button type="submit" className="btn-register" disabled={loading}>
-              {loading ? "Carregando..." : "CADASTRAR →"}
-            </button>
-
-          </form>
-
-          <div className="signup-links">
-            <p>NÃO CONSEGUE CRIAR CONTA?</p>
-            <Link to="/signin">JÁ TEM UMA CONTA?</Link>
-          </div>
-        </div>
-      </div>
-
-      <div className="signup-right">
-        <img src={trapdoorBanner} className="signup-banner" />
+        <span className="register-text">
+          Já possui uma conta?{" "}
+          <Link to="/signin" className="link-hover">
+            Entrar
+          </Link>
+        </span>
       </div>
     </div>
   );
