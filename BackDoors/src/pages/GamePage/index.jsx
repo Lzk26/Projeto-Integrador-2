@@ -1,8 +1,8 @@
 import { useParams, Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState, useEffect } from "react";
-import { getGameById } from "../../api";
-import { addToCart } from "../../../backend/src/services/cart";
+import { getGameById } from "../../services/api";
+import { addToCart } from "../../services/cart";
 
 
 export default function GamePage() {

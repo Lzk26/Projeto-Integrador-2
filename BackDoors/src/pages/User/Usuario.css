@@ -1,0 +1,50 @@
+.user-page {
+  min-height: 80vh;
+  padding-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #000;
+  color: white;
+}
+
+.user-card {
+  background: #111;
+  padding: 30px;
+  border-radius: 12px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(94, 23, 235, 0.3);
+}
+
+.user-card .title {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.orders-btn, .back-btn {
+  display: block;
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.orders-btn {
+  background: #5E17EB;
+  color: white;
+}
+
+.back-btn {
+  background: #333;
+  color: white;
+}
+
+.orders-btn:hover {
+  background: #7b3af5;
+}
+
+.back-btn:hover {
+  background: #444;
+}

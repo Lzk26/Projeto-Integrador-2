@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { getCart, removeFromCart, clearCart } from "../../../backend/src/services/cart";
-import { finalizeOrder } from "../../../backend/src/services/order";
+import { getCart, removeFromCart, clearCart } from "../../services/cart";
+import { finalizeOrder } from "../../services/order";
+
 
 
 export default function Carrinho() {

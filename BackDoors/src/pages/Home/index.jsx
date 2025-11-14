@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import GameCard from '../../components/GameCard';
 import { useEffect, useState } from 'react';
-import { getGames } from "../../api";
+import { getGames } from "../../services/api";
 
 
 const Home = () => {

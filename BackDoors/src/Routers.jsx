@@ -6,7 +6,7 @@ import GamePage from "./pages/GamePage";
 import User from "./pages/User";
 import Payment from "./pages/Payment";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
-import Signin from "./pages/Signin";
+import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 
 import AuthGuard from "./authGuard";
@@ -16,8 +16,8 @@ export default function Routers() {
     <Routes>
       <Route path="/" element={<Home />} />
 
-      <Route path="/signin" element={<Signin />} />
-      <Route path="/signup" element={<SignUp />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/cadastrar" element={<SignUp />} />
 
       <Route
         path="/usuario"
