@@ -4,11 +4,12 @@ function getToken() {
   return localStorage.getItem("trapdoor_token");
 }
 
+// FINALIZAR COMPRA (CHECKOUT)
 export async function finalizeOrder() {
   const res = await fetch(`${API_URL}/checkout`, {
     method: "POST",
-    headers: { 
-      Authorization: `Bearer ${getToken()}` 
+    headers: {
+      Authorization: `Bearer ${getToken()}`
     }
   });
 
