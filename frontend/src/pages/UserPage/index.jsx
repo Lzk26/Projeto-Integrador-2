@@ -1,3 +1,4 @@
+// src/pages/UserPage/index.jsx
 import { useEffect, useState } from "react";
 import { getMe } from "../../services/user.js";
 import { getOrders } from "../../services/orders.js";
@@ -29,13 +30,13 @@ export default function UserPage() {
 
   return (
     <div className="user-page">
-
       {/* 🔵 TOPO */}
       <div className="user-topbar">
         <div className="top-left">
           <div className="user-identity">
             <img
               src="/src/assets/userdefault.png"
+              alt="Avatar do usuário"
               className="user-avatar"
             />
             <div>
@@ -63,7 +64,6 @@ export default function UserPage() {
 
       {/* 🔵 MAIN LAYOUT */}
       <div className="user-layout">
-
         {/* 📘 Biblioteca do Usuário */}
         <div className="user-library">
           <div className="library-header">
@@ -73,13 +73,19 @@ export default function UserPage() {
 
           <div className="library-grid">
             {orders.length === 0 && (
-              <p className="text-gray-300 text-sm">Nenhum jogo comprado ainda.</p>
+              <p className="text-gray-300 text-sm">
+                Nenhum jogo comprado ainda.
+              </p>
             )}
 
             {orders.map((order) =>
               order.items.map((item) => (
                 <div key={item.id} className="game-card group">
-                  <img src={item.game.cover} className="game-img" />
+                  <img
+                    src={item.game.cover}
+                    alt={item.game.title}
+                    className="game-img"
+                  />
                   <div className="game-overlay">
                     <h3 className="game-title">{item.game.title}</h3>
                     <button className="play-btn">Instalar</button>
@@ -95,7 +101,6 @@ export default function UserPage() {
           <h3 className="library-title mb-3">Estatísticas</h3>
 
           <div className="stat-list">
-
             <div className="stat-item">
               <span className="stat-icon">🎮</span>
               <span>{orders.length} pedidos realizados</span>
@@ -104,7 +109,8 @@ export default function UserPage() {
             <div className="stat-item">
               <span className="stat-icon">📚</span>
               <span>
-                {orders.reduce((sum, o) => sum + o.items.length, 0)} jogos adquiridos
+                {orders.reduce((sum, o) => sum + o.items.length, 0)} jogos
+                adquiridos
               </span>
             </div>
 
@@ -122,10 +128,8 @@ export default function UserPage() {
               <span className="stat-icon">📦</span>
               <span>Ver meus pedidos</span>
             </Link>
-
           </div>
         </div>
-
       </div>
     </div>
   );

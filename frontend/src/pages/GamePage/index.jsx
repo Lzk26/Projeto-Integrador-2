@@ -19,7 +19,7 @@ export default function GamePage() {
   if (!game) {
     return (
       <div className="game-page">
-        <h1>Carregando jogo...</h1>
+        <h1 className="text-2xl font-bold">Carregando jogo...</h1>
       </div>
     );
   }
@@ -33,10 +33,10 @@ export default function GamePage() {
 
       <div className="game-wrapper">
 
-        {/* ========== VÍDEO + INFO ========== */}
+        {/* ================== VÍDEO + INFO ================== */}
         <div className="game-container">
 
-          {/* Vídeo */}
+          {/* Trailer */}
           <div className="game-video">
             <iframe
               className="w-full h-full rounded-2xl"
@@ -46,7 +46,7 @@ export default function GamePage() {
             ></iframe>
           </div>
 
-          {/* Informações */}
+          {/* Informações principais */}
           <div className="game-info">
             <img src={game.cover} alt={game.title} className="game-cover" />
 
@@ -62,30 +62,28 @@ export default function GamePage() {
           </div>
         </div>
 
-        {/* MINIATURAS */}
+        {/* ================== MINIATURAS ================== */}
         <div className="flex justify-center gap-4 flex-wrap mt-6">
-          {thumbnails.map((img, index) => (
-            <button
-              key={index}
-              onClick={() => setZoom(img)}
-              className="thumb-btn"
-            >
+          {thumbnails.map((img, i) => (
+            <button key={i} onClick={() => setZoom(img)} className="thumb-btn">
               <img src={img} className="thumb-img" />
             </button>
           ))}
         </div>
 
-        {/* ZOOM */}
+        {/* ================== ZOOM ================== */}
         {zoom && (
           <div className="zoom-modal" onClick={() => setZoom(null)}>
             <img src={zoom} className="zoom-img" />
           </div>
         )}
 
-        {/* ========== SEÇÃO DE DETALHES ========== */}
+        {/* ================== DETALHES ================== */}
         <div className="details-section">
+
+          {/* LADO ESQUERDO — IDIOMAS */}
           <div className="details-left">
-            <h3 className="details-title">Idiomas</h3>
+            <h3 className="text-lg font-bold mb-3">Idiomas</h3>
 
             <div className="languages-grid">
               <div className="language-row">
@@ -104,6 +102,7 @@ export default function GamePage() {
             </div>
           </div>
 
+          {/* LADO DIREITO — INFOS E TAGS */}
           <div className="details-right">
             <div className="tag-list">
               <span className="tag">Ação</span>
@@ -124,7 +123,7 @@ export default function GamePage() {
           </div>
         </div>
 
-        {/* ========== REQUISITOS ========== */}
+        {/* ================== REQUISITOS ================== */}
         <section className="requirements-section">
           <h2 className="requirements-title">Requisitos de Sistema</h2>
 

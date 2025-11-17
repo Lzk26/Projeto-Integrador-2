@@ -1,7 +1,8 @@
+// src/pages/Home/index.jsx
 import { useEffect, useState } from "react";
 import { getGames } from "../../services/api";
-import { Link } from "react-router-dom";
-import './Home.css'
+import GameCard from "../../components/GameCard";
+import "./Home.css";
 
 export default function Home() {
   const [games, setGames] = useState([]);
@@ -16,12 +17,11 @@ export default function Home() {
 
   return (
     <div className="page-container">
-
       {/* ========== BANNER PRINCIPAL ========== */}
       <div className="banner">
         <div className="banner-img-container">
           <img
-            src="/src/assets/mainbanner.png"
+            src="/BannerCupons.png"
             alt="Promoção TrapDoor"
             className="banner-img"
           />
@@ -32,32 +32,11 @@ export default function Home() {
       <h2 className="title-large">Jogos em destaque</h2>
       <p className="subtitle">Explore os jogos disponíveis na plataforma</p>
 
-      {/* ========== GRID DE JOGOS DINÂMICA ========== */}
+      {/* ========== GRID DE JOGOS ========== */}
       <section>
         <div className="card-grid">
           {games.map((game) => (
-            <Link to={`/jogo/${game.id}`} key={game.id} className="game-card group">
-
-              {/* Cabeçalho com “Steam” */}
-              <div className="game-card-header">
-                <div className="platform">Steam</div>
-              </div>
-
-              {/* Imagem */}
-              <div className="image-container">
-                <img src={game.cover} alt={game.title} className="game-card-image" />
-              </div>
-
-              {/* Conteúdo */}
-              <div className="game-card-content">
-                <h3 className="game-card-title">{game.title}</h3>
-
-                <div className="game-card-bottom">
-                  <span className="price-box">R$ {Number(game.price).toFixed(2)}</span>
-                </div>
-              </div>
-
-            </Link>
+            <GameCard key={game.id} game={game} />
           ))}
         </div>
       </section>
@@ -66,13 +45,12 @@ export default function Home() {
       <div className="banner">
         <div className="banner-img-container">
           <img
-            src="/src/assets/banner2.png"
+            src="/BannerDescontoEpico.png"
             alt="Muitos Cupons"
             className="banner-img"
           />
         </div>
       </div>
-
     </div>
   );
 }

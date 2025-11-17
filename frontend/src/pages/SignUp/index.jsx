@@ -1,10 +1,10 @@
+// src/pages/SignUp/index.jsx
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./SignUp.css";
+import { FaArrowLeft } from "react-icons/fa";
 
 export default function SignUp() {
   const navigate = useNavigate();
-
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -32,57 +32,66 @@ export default function SignUp() {
   }
 
   return (
-    <div className="signin-container">
-      <div className="signin-card">
-
-        <img 
-          src="/src/assets/trapdoorbanner.png"
-          alt="Trapdoor"
-          className="signin-banner"
-        />
-
-        <h2>Criar Conta</h2>
-        <p>Preencha os dados para continuar</p>
-
-        {erro && <p className="error">{erro}</p>}
+    <div className="LoginPage">
+      <div className="LoginForm">
+        <Link to="/" className="LoginExit flex items-center gap-2">
+          <FaArrowLeft /> Voltar
+        </Link>
 
         <form onSubmit={handleRegister}>
+          <h2 className="LoginTitle">Criar Conta</h2>
+
+          {erro && <p className="LoginErrorGlobal">{erro}</p>}
+
+          <label className="LoginLabel">Usuário</label>
           <input
             type="text"
-            placeholder="Usuário"
+            className="LoginInput"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
 
+          <label className="LoginLabel">Email</label>
           <input
             type="email"
-            placeholder="E-mail"
+            className="LoginInput"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
 
+          <label className="LoginLabel mt-2">Senha</label>
           <input
             type="password"
-            placeholder="Senha"
+            className="LoginInput"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
             required
           />
 
-          <button className="btn-login" type="submit">
-            Criar Conta
+          <button className="LoginButton" type="submit">
+            Criar conta
           </button>
-        </form>
 
-        <span className="register-text">
-          Já possui uma conta?{" "}
-          <Link to="/signin" className="link-hover">
-            Entrar
-          </Link>
-        </span>
+          <p className="text-sm text-center mt-6 text-gray-500">
+            Já possui conta?
+            <Link
+              to="/signin"
+              className="text-purple-600 ml-1 hover:underline"
+            >
+              Entrar
+            </Link>
+          </p>
+        </form>
       </div>
+
+      <div
+        className="LoginArte"
+        style={{
+          backgroundImage: "url('/src/assets/trapdoorbanner.png')",
+        }}
+      />
     </div>
   );
 }

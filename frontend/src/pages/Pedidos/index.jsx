@@ -15,7 +15,7 @@ export default function Pedidos() {
 
   if (!orders) {
     return (
-      <div style={{ paddingTop: "80px", color: "white", textAlign: "center" }}>
+      <div className="min-h-screen pt-24 flex items-center justify-center text-white">
         <h1>Carregando pedidos...</h1>
       </div>
     );
@@ -23,10 +23,15 @@ export default function Pedidos() {
 
   if (orders.length === 0) {
     return (
-      <div style={{ paddingTop: "80px", color: "white", textAlign: "center" }}>
-        <h1>Meus pedidos</h1>
-        <p>Você ainda não realizou nenhuma compra.</p>
-        <Link to="/" style={{ color: "#5E17EB", textDecoration: "underline" }}>
+      <div className="min-h-screen pt-24 flex flex-col items-center justify-start text-white gap-3">
+        <h1 className="text-2xl font-bold">Meus pedidos</h1>
+        <p className="text-sm text-gray-300">
+          Você ainda não realizou nenhuma compra.
+        </p>
+        <Link
+          to="/"
+          className="text-purple-400 hover:text-purple-300 underline text-sm"
+        >
           Voltar para a loja
         </Link>
       </div>
@@ -34,44 +39,43 @@ export default function Pedidos() {
   }
 
   return (
-    <div style={{ paddingTop: "80px", color: "white", maxWidth: "900px", margin: "0 auto" }}>
-      <h1>Meus pedidos</h1>
+    <div className="min-h-screen pt-24 text-white max-w-3xl mx-auto px-4">
+      <h1 className="text-2xl font-bold mb-6">Meus pedidos</h1>
 
-      <div style={{ marginTop: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
+      <div className="flex flex-col gap-4">
         {orders.map((order) => (
           <div
             key={order.id}
-            style={{
-              border: "1px solid #333",
-              borderRadius: "10px",
-              padding: "16px",
-              background: "#111",
-            }}
+            className="border border-gray-700 rounded-xl p-4 bg-black/60"
           >
-            <p><strong>Pedido #{order.id}</strong></p>
-            <p>
+            <p className="font-semibold">Pedido #{order.id}</p>
+            <p className="text-sm text-gray-300">
               <strong>Data:</strong>{" "}
               {new Date(order.createdAt).toLocaleDateString("pt-BR")}
             </p>
-            <p>
+            <p className="text-sm text-gray-300">
               <strong>Total:</strong> R$ {Number(order.total).toFixed(2)}
             </p>
-            <p>
+            <p className="text-sm text-gray-300">
               <strong>Jogos:</strong>{" "}
               {order.items.map((item) => item.game.title).join(", ")}
             </p>
 
-            {/* ⭐⭐ AQUI ESTÁ A FASE 3 — O BOTÃO PARA A PÁGINA DE DETALHES ⭐⭐ */}
-            <Link to={`/pedidos/${order.id}`}>
-                  Ver detalhes →
-             </Link>
-
+            <Link
+              to={`/pedidos/${order.id}`}
+              className="mt-3 inline-block text-purple-400 hover:text-purple-300 underline text-sm"
+            >
+              Ver detalhes →
+            </Link>
           </div>
         ))}
       </div>
 
-      <div style={{ marginTop: "20px" }}>
-        <Link to="/" style={{ color: "#5E17EB", textDecoration: "underline" }}>
+      <div className="mt-6">
+        <Link
+          to="/"
+          className="text-purple-400 hover:text-purple-300 underline text-sm"
+        >
           Voltar para a loja
         </Link>
       </div>

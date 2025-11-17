@@ -5,13 +5,6 @@ const prisma = new PrismaClient();
 async function main() {
   console.log("🌱 Iniciando seed do banco...");
 
-  const game = await prisma.game.findUnique({
-  where: { id },
-  include: {
-    thumbnails: true
-  }
-});
-
   const games = [
     // =====================
     // LINHA 1 (Home - Destaques)
@@ -22,7 +15,7 @@ async function main() {
       description: "Reviva o clássico RPG de mundo aberto com gráficos remasterizados e melhorias de jogabilidade.",
       price: 211.92,
       discount: 20,
-      cover: "/src/assets/Oblivion.png",
+      cover: "/games/Oblivion.jpg",
       video: "https://www.youtube.com/embed/wFJ3PZuAjK4"
     },
     {
@@ -31,7 +24,7 @@ async function main() {
       description: "Enfrente hordas demoníacas no shooter mais frenético e brutal da atualidade.",
       price: 181.80,
       discount: 20,
-      cover: "/src/assets/DoomEternal.png",
+      cover: "/games/DoomEternal.jpg",
       video: "https://www.youtube.com/embed/2HOClc6Svg4"
     },
     {
@@ -40,7 +33,7 @@ async function main() {
       description: "Viva uma aventura cinematográfica com o icônico arqueólogo Indiana Jones.",
       price: 279.20,
       discount: 20,
-      cover: "/src/assets/IndianaJones.png",
+      cover: "/games/IndianaJones.jpg",
       video: "https://www.youtube.com/embed/CynusAYSin0"
     },
     {
@@ -49,7 +42,7 @@ async function main() {
       description: "Explore o universo com liberdade total neste RPG espacial da Bethesda.",
       price: 179.40,
       discount: 40,
-      cover: "/src/assets/Starfield.png",
+      cover: "/games/Starfield.jpg",
       video: "https://www.youtube.com/embed/k2p3c8Eo9pA"
     },
 
@@ -62,7 +55,7 @@ async function main() {
       description: "Um shooter cooperativo dos criadores de Left 4 Dead.",
       price: 55.99,
       discount: 80,
-      cover: "/src/assets/Back4Blood.png",
+      cover: "/games/Back4Blood.jpg",
       video: "https://www.youtube.com/embed/EXE5RsvZ9a0"
     },
     {
@@ -71,7 +64,7 @@ async function main() {
       description: "Escolha seu herói e lute pelo futuro da humanidade com intensidade cinematográfica.",
       price: 55.99,
       discount: 80,
-      cover: "/src/assets/Injustice2.png",
+      cover: "/games/Injustice2.jpg",
       video: "https://www.youtube.com/embed/HU1YgIWu8rE"
     },
     {
@@ -80,7 +73,7 @@ async function main() {
       description: "A equipe mais caótica do mundo contra a Liga da Justiça.",
       price: 55.99,
       discount: 80,
-      cover: "/src/assets/SuicideSquad.png",
+      cover: "/games/SuicideSquad.jpg",
       video: "https://www.youtube.com/embed/v2VpWnBKtnk"
     },
     {
@@ -89,7 +82,7 @@ async function main() {
       description: "Heróis contra heróis em batalhas épicas.",
       price: 17.99,
       discount: 80,
-      cover: "/src/assets/InjusticeGodAUs.png",
+      cover: "/games/InjusticeGodAUs.jpg",
       video: "https://www.youtube.com/embed/1yBJjENd3RY"
     },
 
@@ -102,7 +95,7 @@ async function main() {
       description: "Um RPG profundo cheio de monstros gigantes e exploração.",
       price: 249.90,
       discount: 10,
-      cover: "/src/assets/DragonsDogma2.png",
+      cover: "/games/DragonsDogma2.jpg",
       video: "https://www.youtube.com/embed/jCEdT3CjHfE"
     },
     {
@@ -111,7 +104,7 @@ async function main() {
       description: "Uma grande aventura em um mundo aberto desafiador criado por Miyazaki e George R.R. Martin.",
       price: 199.90,
       discount: 30,
-      cover: "/src/assets/EldenRing.png",
+      cover: "/games/EldenRing.jpg",
       video: "https://www.youtube.com/embed/E3Huy2cdih0"
     },
     {
@@ -120,7 +113,7 @@ async function main() {
       description: "A experiência definitiva de mundo aberto da Rockstar Games.",
       price: 79.99,
       discount: 50,
-      cover: "/src/assets/GTA5.png",
+      cover: "/games/GTA5.jpg",
       video: "https://www.youtube.com/embed/hvoD7ehZPcM"
     },
     {
@@ -129,7 +122,7 @@ async function main() {
       description: "Um épico sobre honra e lealdade no velho oeste.",
       price: 249.90,
       discount: 30,
-      cover: "/src/assets/RDR2.png",
+      cover: "/games/RDR2.jpg",
       video: "https://www.youtube.com/embed/eaW0tYpxyp0"
     },
 
@@ -142,7 +135,7 @@ async function main() {
       description: "Um RPG futurista cheio de ação e narrativa profunda.",
       price: 199.99,
       discount: 50,
-      cover: "/src/assets/Cyberpunk.png",
+      cover: "/games/Cyberpunk.jpg",
       video: "https://www.youtube.com/embed/8X2kIfS6fb8"
     },
     {
@@ -151,7 +144,7 @@ async function main() {
       description: "Um dos maiores RPGs já feitos, com narrativa profunda e mundo vivo.",
       price: 99.99,
       discount: 70,
-      cover: "/src/assets/Witcher3.png",
+      cover: "/games/Witcher3.jpg",
       video: "https://www.youtube.com/embed/53MyR_Z3i1w"
     },
     {
@@ -160,7 +153,7 @@ async function main() {
       description: "Viva como um estudante de Hogwarts e explore o mundo mágico.",
       price: 299.99,
       discount: 30,
-      cover: "/src/assets/HogwartsLegacy.png",
+      cover: "/games/HogwartsLegacy.jpg",
       video: "https://www.youtube.com/embed/1O6Qstncpnc"
     },
     {
@@ -169,12 +162,12 @@ async function main() {
       description: "Torne-se um guerreiro Viking e conquiste a Inglaterra.",
       price: 199.99,
       discount: 60,
-      cover: "/src/assets/ACValhalla.png",
+      cover: "/games/ACValhalla.jpg",
       video: "https://www.youtube.com/embed/ssrNcwxALS4"
     }
   ];
 
-  // Insere todos
+  // Inserindo no banco
   for (const game of games) {
     await prisma.game.upsert({
       where: { id: game.id },

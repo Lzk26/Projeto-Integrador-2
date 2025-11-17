@@ -1,11 +1,11 @@
+// src/pages/Cart/index.jsx
 import { useEffect, useState } from "react";
 import { getCart, removeFromCart, clearCart } from "../../services/cart";
-import { finalizeOrder } from "../../services/order";
+import { Link, useNavigate } from "react-router-dom";
 
-
-
-export default function Carrinho() {
+export default function Cart() {
   const [cart, setCart] = useState(null);
+  const navigate = useNavigate();
 
   async function load() {
     const data = await getCart();
@@ -26,48 +26,117 @@ export default function Carrinho() {
     load();
   }, []);
 
-  if (!cart) return <h1>Carregando carrinho...</h1>;
+  if (!cart) {
+    return (
+      <div className="cart-page flex items-center justify-center">
+        <h1 className="text-xl">Carregando carrinho...</h1>
+      </div>
+    );
+  }
+
+  const total = cart.items.reduce(
+    (sum, item) => sum + Number(item.game.price),
+    0
+  );
+
+  const hasItems = cart.items.length > 0;
 
   return (
-    <div className="cart-container">
-      <h1>Seu carrinho</h1>
+    <div className="cart-page">
+      <h1 className="cart-title">Seu carrinho</h1>
 
-      {cart.items.length === 0 && <p>O carrinho está vazio ;(</p>}
+      {/* Área roxa com os cards */}
+      <div className="cart-wrapper mt-4">
+        {hasItems ? (
+          <div className="cart-grid">
+            {cart.items.map((item) => (
+              <div key={item.id} className="cart-card">
+                <img
+                  src={item.game.cover}
+                  alt={item.game.title}
+                  className="cart-card__img"
+                />
+                <div className="cart-card__body">
+                  <h2 className="cart-card__title">{item.game.title}</h2>
+                  <p className="cart-card__price">
+                    R$ {Number(item.game.price).toFixed(2)}
+                  </p>
 
-      <div className="cart-list">
-        {cart.items.map((item) => (
-          <div key={item.id} className="cart-item">
-            <img src={item.game.cover} alt={item.game.title} />
-            <div>
-              <h2>{item.game.title}</h2>
-              <p>R$ {item.game.price}</p>
+                  <button
+                    className="mt-2 text-xs text-red-300 underline"
+                    onClick={() => handleRemove(item.gameId)}
+                  >
+                    Remover
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="mt-4 text-sm text-gray-200">
+            O carrinho está vazio ;(
+          </p>
+        )}
 
-              <button 
-                onClick={() => handleRemove(item.gameId)}>
-                Remover
-              </button>
-
-              <button
-                className="finish-btn"
-                onClick={async () => {
-                const res = await finalizeOrder();
-                alert(res.message);
-                load(); // recarrega carrinho limpo
-                }}>
-              Finalizar compra
-              </button>
+        {/* Rodapé com info e total */}
+        <div className="cart-bottom">
+          {/* Box de informações */}
+          <div className="info-box">
+            <div className="info-box__icon">i</div>
+            <div className="info-box__content">
+              <h3 className="info-box__title">Como funciona a Trapdoor?</h3>
+              <ul className="info-box__list">
+                <li>Você recebe a chave oficial do jogo após o pagamento.</li>
+                <li>
+                  Todos os jogos são originais e ativados na sua conta Steam.
+                </li>
+                <li>
+                  Suporte disponível em caso de qualquer problema com a ativação.
+                </li>
+              </ul>
             </div>
           </div>
-        ))}
-      </div>
 
-      {cart.items.length > 0 && (
-        <>
-          <button className="clear-btn" onClick={handleClear}>
-            Limpar carrinho
-          </button>
-        </>
-      )}
+          {/* Box de total */}
+          <div className="total-box">
+            <div>
+              <p className="total-box__title">TOTAL DA COMPRA</p>
+              <p className="total-box__amount">
+                R$ {total.toFixed(2)}
+              </p>
+            </div>
+
+            <div className="mt-4 flex flex-col gap-2">
+              <button
+                className={
+                  "continue-btn " +
+                  (hasItems ? "continue-btn--on" : "continue-btn--off")
+                }
+                disabled={!hasItems}
+                onClick={() => hasItems && navigate("/pagamento")}
+              >
+                Continuar para pagamento
+              </button>
+
+              {hasItems && (
+                <button
+                  className="text-xs text-gray-200 underline mt-2"
+                  onClick={handleClear}
+                >
+                  Limpar carrinho
+                </button>
+              )}
+
+              <Link
+                to="/"
+                className="text-xs text-gray-200 underline mt-2 text-center"
+              >
+                ← Continuar comprando
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

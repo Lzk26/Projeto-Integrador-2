@@ -1,10 +1,10 @@
+// src/pages/SignIn/index.jsx
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Signin.css";
+import { FaArrowLeft } from "react-icons/fa";
 
-export default function Signin() {
+export default function SignIn() {
   const navigate = useNavigate();
-
   const [username, setUsername] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
@@ -31,49 +31,57 @@ export default function Signin() {
   }
 
   return (
-    <div className="signin-container">
-      <div className="signin-card">
-
-        <img 
-          src="/src/assets/trapdoorbanner.png"
-          alt="Trapdoor"
-          className="signin-banner"
-        />
-
-        <h2>Entrar</h2>
-        <p>Acesse sua conta</p>
-
-        {erro && <p className="error">{erro}</p>}
+    <div className="LoginPage">
+      {/* LADO ESQUERDO */}
+      <div className="LoginForm">
+        <Link to="/" className="LoginExit flex items-center gap-2">
+          <FaArrowLeft /> Voltar
+        </Link>
 
         <form onSubmit={handleLogin}>
+          <h2 className="LoginTitle">Entrar</h2>
+
+          {erro && <p className="LoginErrorGlobal">{erro}</p>}
+
+          <label className="LoginLabel">Usuário</label>
           <input
             type="text"
-            placeholder="Usuário"
+            className="LoginInput"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            required
           />
 
+          <label className="LoginLabel mt-2">Senha</label>
           <input
             type="password"
-            placeholder="Senha"
+            className="LoginInput"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
-            required
           />
 
-          <button className="btn-login" type="submit">
+          <button className="LoginButton" type="submit">
             Entrar
           </button>
-        </form>
 
-        <span className="register-text">
-          Não tem conta?{" "}
-          <Link to="/cadastrar" className="link-hover">
-            Criar conta
-          </Link>
-        </span>
+          <p className="text-sm text-center mt-6 text-gray-500">
+            Não tem conta?
+            <Link
+              to="/cadastrar"
+              className="text-purple-600 ml-1 hover:underline"
+            >
+              Criar conta
+            </Link>
+          </p>
+        </form>
       </div>
+
+      {/* LADO DIREITO */}
+      <div
+        className="LoginArte"
+        style={{
+          backgroundImage: "url('/src/assets/trapdoorbanner.png')",
+        }}
+      />
     </div>
   );
 }

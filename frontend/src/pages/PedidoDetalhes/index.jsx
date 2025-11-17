@@ -1,3 +1,4 @@
+// src/pages/PedidoDetalhes/index.jsx
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getOrderById } from "../../services/orders";
@@ -16,54 +17,49 @@ export default function PedidoDetalhes() {
 
   if (!order) {
     return (
-      <div style={{ paddingTop: "80px", color: "white", textAlign: "center" }}>
+      <div className="min-h-screen pt-24 flex items-center justify-center text-white">
         <h1>Carregando pedido...</h1>
       </div>
     );
   }
 
   return (
-    <div style={{ paddingTop: "80px", color: "white", maxWidth: "900px", margin: "0 auto" }}>
-      <h1>Detalhes do Pedido #{order.id}</h1>
+    <div className="min-h-screen pt-24 text-white max-w-4xl mx-auto px-4">
+      <h1 className="text-2xl font-bold mb-2">
+        Detalhes do Pedido #{order.id}
+      </h1>
 
-      <p><strong>Data:</strong> {new Date(order.createdAt).toLocaleDateString("pt-BR")}</p>
-      <p><strong>Total:</strong> R$ {Number(order.total).toFixed(2)}</p>
+      <p className="text-sm text-gray-300">
+        <strong>Data:</strong>{" "}
+        {new Date(order.createdAt).toLocaleDateString("pt-BR")}
+      </p>
+      <p className="text-sm text-gray-300 mb-4">
+        <strong>Total:</strong> R$ {Number(order.total).toFixed(2)}
+      </p>
 
-      <h2 style={{ marginTop: "25px" }}>Jogos Comprados:</h2>
+      <h2 className="text-xl font-semibold mt-4 mb-3">Jogos comprados</h2>
 
-      <div style={{ marginTop: "20px", display: "flex", flexDirection: "column", gap: "20px" }}>
+      <div className="flex flex-col gap-4">
         {order.items.map((item) => (
           <div
             key={item.id}
-            style={{
-              display: "flex",
-              background: "#111",
-              borderRadius: "10px",
-              padding: "15px",
-              gap: "20px",
-              alignItems: "center",
-            }}
+            className="flex gap-4 bg-black/70 rounded-xl p-4 items-center"
           >
             <img
               src={item.game.cover}
               alt={item.game.title}
-              style={{
-                width: "140px",
-                height: "80px",
-                objectFit: "cover",
-                borderRadius: "8px",
-              }}
+              className="w-40 h-24 rounded-lg object-cover"
             />
 
-            <div style={{ flex: 1 }}>
-              <p style={{ fontSize: "18px", fontWeight: "bold" }}>{item.game.title}</p>
-              <p style={{ marginTop: "5px" }}>
+            <div className="flex-1">
+              <p className="text-lg font-semibold">{item.game.title}</p>
+              <p className="text-sm text-gray-300 mt-1">
                 <strong>Preço:</strong> R$ {Number(item.price).toFixed(2)}
               </p>
 
               <Link
                 to={`/jogo/${item.game.id}`}
-                style={{ color: "#5E17EB", textDecoration: "underline", marginTop: "5px", display: "inline-block" }}
+                className="mt-2 inline-block text-purple-400 hover:text-purple-300 underline text-sm"
               >
                 Ver jogo →
               </Link>
@@ -72,9 +68,18 @@ export default function PedidoDetalhes() {
         ))}
       </div>
 
-      <div style={{ marginTop: "40px" }}>
-        <Link to="/pedidos" style={{ color: "#5E17EB", textDecoration: "underline" }}>
+      <div className="mt-8 flex gap-4">
+        <Link
+          to="/pedidos"
+          className="text-purple-400 hover:text-purple-300 underline text-sm"
+        >
           ← Voltar para meus pedidos
+        </Link>
+        <Link
+          to="/usuario"
+          className="text-purple-400 hover:text-purple-300 underline text-sm"
+        >
+          Ir para minha conta
         </Link>
       </div>
     </div>

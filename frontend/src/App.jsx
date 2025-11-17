@@ -6,7 +6,7 @@ import Routers from './Routers';
 
 function App() {
   const location = useLocation();
-   const noHeaderRoutes = ["/login", "/cadastrar", "/usuario"];
+   const noHeaderRoutes = ["/signin", "/cadastrar", "/usuario"];
 
    const hideHeader = noHeaderRoutes.includes(location.pathname);
 
