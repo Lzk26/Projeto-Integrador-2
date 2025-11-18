@@ -1,17 +1,20 @@
-// src/pages/SignIn/index.jsx
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
+import { useState } from "react";
+import trapdoorBanner from "/src/assets/trapdoorbanner.png";
+import { FaArrowLeft, FaFacebookF, FaApple } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import "./Singin.css";
 
-export default function SignIn() {
+export default function Signin() {
   const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [senha, setSenha] = useState("");
-  const [erro, setErro] = useState("");
+  const [error, setError] = useState("");
 
   async function handleLogin(e) {
     e.preventDefault();
-    setErro("");
+    setError("");
 
     const res = await fetch("http://localhost:3333/login", {
       method: "POST",
@@ -22,66 +25,91 @@ export default function SignIn() {
     const data = await res.json();
 
     if (!res.ok) {
-      setErro(data.error);
+      setError(data.error);
       return;
     }
 
     localStorage.setItem("trapdoor_token", data.token);
+
     navigate("/usuario");
   }
 
   return (
-    <div className="LoginPage">
-      {/* LADO ESQUERDO */}
-      <div className="LoginForm">
-        <Link to="/" className="LoginExit flex items-center gap-2">
-          <FaArrowLeft /> Voltar
-        </Link>
+    <div className="auth-wrapper">
 
-        <form onSubmit={handleLogin}>
-          <h2 className="LoginTitle">Entrar</h2>
+      {/* Botão voltar */}
+      <Link to="/" className="auth-back-btn">
+        <FaArrowLeft />
+        Voltar
+      </Link>
 
-          {erro && <p className="LoginErrorGlobal">{erro}</p>}
+      {/* Lado esquerdo */}
+      <div className="auth-left">
+        <div className="auth-card">
 
-          <label className="LoginLabel">Usuário</label>
-          <input
-            type="text"
-            className="LoginInput"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+          <img src="/Logo.png" className="auth-logo" alt="Trapdoor" />
 
-          <label className="LoginLabel mt-2">Senha</label>
-          <input
-            type="password"
-            className="LoginInput"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-          />
+          <h2 className="auth-title">Fazer login</h2>
 
-          <button className="LoginButton" type="submit">
-            Entrar
-          </button>
+          <form onSubmit={handleLogin} className="auth-form">
 
-          <p className="text-sm text-center mt-6 text-gray-500">
-            Não tem conta?
-            <Link
-              to="/cadastrar"
-              className="text-purple-600 ml-1 hover:underline"
-            >
+            <input
+              type="text"
+              placeholder="Nome de usuário"
+              className="auth-input"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+
+            <input
+              type="password"
+              placeholder="Senha"
+              className="auth-input"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+            />
+
+            {error && <p className="auth-error">{error}</p>}
+
+            {/* Botões sociais */}
+            <button type="button" className="auth-social-btn auth-social-facebook">
+              <FaFacebookF /> <span>Facebook</span>
+            </button>
+
+            <button type="button" className="auth-social-btn auth-social-google">
+              <FcGoogle /> <span>Google</span>
+            </button>
+
+            <button type="button" className="auth-social-btn auth-social-apple">
+              <FaApple /> <span>Apple</span>
+            </button>
+
+            <div className="auth-remember">
+              <input type="checkbox" id="remember" />
+              <label htmlFor="remember">Manter login</label>
+            </div>
+
+            <button type="submit" className="auth-submit">
+              Entrar →
+            </button>
+          </form>
+
+          <div className="auth-links">
+            <p className="auth-link-secondary">Não consegue fazer login?</p>
+
+            <Link to="/cadastrar" className="auth-link-primary">
               Criar conta
             </Link>
-          </p>
-        </form>
+          </div>
+
+        </div>
       </div>
 
-      {/* LADO DIREITO */}
-      <div
-        className="LoginArte"
-        style={{
-          backgroundImage: "url('/src/assets/trapdoorbanner.png')",
-        }}
-      />
+      {/* Banner */}
+      <div className="auth-right">
+        <img src={trapdoorBanner} className="auth-banner" />
+      </div>
+
     </div>
   );
 }

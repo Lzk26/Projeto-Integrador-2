@@ -1,4 +1,3 @@
-// src/pages/Home/index.jsx
 import { useEffect, useState } from "react";
 import { getGames } from "../../services/api";
 import GameCard from "../../components/GameCard";
@@ -15,8 +14,13 @@ export default function Home() {
     loadGames();
   }, []);
 
+  // Divide os jogos em 2 blocos de 8 itens
+  const firstBatch = games.slice(0, 8);
+  const secondBatch = games.slice(8, 16);
+
   return (
     <div className="page-container">
+
       {/* ========== BANNER PRINCIPAL ========== */}
       <div className="banner">
         <div className="banner-img-container">
@@ -32,10 +36,10 @@ export default function Home() {
       <h2 className="title-large">Jogos em destaque</h2>
       <p className="subtitle">Explore os jogos disponíveis na plataforma</p>
 
-      {/* ========== GRID DE JOGOS ========== */}
+      {/* ========== PRIMEIRA GRID (8 jogos) ========== */}
       <section>
         <div className="card-grid">
-          {games.map((game) => (
+          {firstBatch.map((game) => (
             <GameCard key={game.id} game={game} />
           ))}
         </div>
@@ -51,6 +55,16 @@ export default function Home() {
           />
         </div>
       </div>
+
+      {/* ========== SEGUNDA GRID (8 jogos seguintes) ========== */}
+      <section>
+        <div className="card-grid">
+          {secondBatch.map((game) => (
+            <GameCard key={game.id} game={game} />
+          ))}
+        </div>
+      </section>
+
     </div>
   );
 }

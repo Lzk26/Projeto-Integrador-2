@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+  /* ======================= PAGE ======================= */
+  .orders-page {
+    @apply min-h-screen pt-28 px-6 text-white max-w-4xl mx-auto;
+  }
+
+  .orders-page-center {
+    @apply min-h-screen pt-28 flex items-center justify-center text-white;
+  }
+
+  .orders-empty-page {
+    @apply min-h-screen pt-28 flex flex-col items-center text-center gap-4 text-white;
+  }
+
+  /* ======================= TITLES ======================= */
+  .orders-title {
+    @apply text-3xl font-bold mb-8;
+  }
+
+  .orders-loading {
+    @apply text-xl text-gray-300;
+  }
+
+  .orders-empty-text {
+    @apply text-gray-400 text-sm;
+  }
+
+  /* ======================= LIST ======================= */
+  .orders-list {
+    @apply flex flex-col gap-6;
+  }
+
+  /* ======================= CARD (GLASS STYLE) ======================= */
+  .orders-card {
+    @apply bg-white/5 backdrop-blur-md
+           border border-purple-700/30 
+           shadow-[0_0_25px_rgba(94,23,235,0.25)]
+           rounded-xl p-5 transition 
+           hover:shadow-[0_0_35px_rgba(94,23,235,0.45)]
+           hover:border-purple-500/40;
+  }
+
+  .orders-card-header {
+    @apply flex items-center justify-between mb-4;
+  }
+
+  .orders-id {
+    @apply font-bold text-purple-300;
+  }
+
+  .orders-date {
+    @apply text-gray-400 text-sm;
+  }
+
+  /* ======================= GAMES INSIDE CARD ======================= */
+  .orders-games {
+    @apply flex flex-wrap gap-4 mt-3;
+  }
+
+  .orders-game-item {
+    @apply flex items-center gap-3 bg-white/5
+           px-3 py-2 rounded-lg border border-purple-700/20 
+           hover:bg-purple-900/20 transition;
+  }
+
+  .orders-game-img {
+    @apply w-12 h-12 rounded-md object-cover;
+  }
+
+  .orders-game-title {
+    @apply text-sm text-gray-200;
+  }
+
+  /* ======================= BOTTOM ======================= */
+  .orders-bottom {
+    @apply flex items-center justify-between mt-4;
+  }
+
+  .orders-total {
+    @apply font-semibold text-purple-300;
+  }
+
+  .orders-details-btn {
+    @apply text-purple-400 hover:text-purple-300 font-medium text-sm underline;
+  }
+
+  /* ======================= RETURN BUTTON ======================= */
+  .orders-return {
+    @apply text-purple-400 hover:text-purple-300 underline text-sm mt-4;
+  }
+
+  .orders-footer {
+    @apply mt-8 flex justify-center;
+  }
+
+}

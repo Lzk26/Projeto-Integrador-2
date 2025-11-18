@@ -84,7 +84,7 @@ export default function Payment() {
                   </p>
                 </div>
                 <img
-                  src="/src/assets/pix.png"
+                  src="/pix-payment.png"
                   alt="Pix"
                   className="method-logo"
                 />
@@ -105,7 +105,7 @@ export default function Payment() {
                   </p>
                 </div>
                 <img
-                  src="/src/assets/creditcard.png"
+                  src="/mastercard-payment.png"
                   alt="Cartão"
                   className="method-logo"
                 />
@@ -126,7 +126,7 @@ export default function Payment() {
                   </p>
                 </div>
                 <img
-                  src="/src/assets/boleto.png"
+                  src="/boleto-payment.png"
                   alt="Boleto"
                   className="method-logo"
                 />

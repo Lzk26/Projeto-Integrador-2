@@ -13,11 +13,11 @@
   }
 
   .auth-left {
-    @apply w-[65%] flex justify-center items-center;
+    @apply w-[65%] flex justify-center items-center bg-white;
   }
 
   .auth-card {
-    @apply w-[380px] text-center;
+    @apply w-[380px] flex flex-col items-center text-center;
   }
 
   .auth-logo {
@@ -25,7 +25,7 @@
   }
 
   .auth-title {
-    @apply text-[22px] font-bold mt-6 mb-6;
+    @apply text-[22px] font-bold mb-6 text-black;
   }
 
   .auth-input {
@@ -33,7 +33,7 @@
   }
 
   .auth-social-btn {
-    @apply w-full h-[42px] rounded-md my-2 flex items-center justify-center gap-3 text-[15px] font-medium transition cursor-pointer;
+    @apply w-full h-[42px] rounded-md mt-2 flex items-center justify-center gap-3 text-[15px] font-medium transition;
   }
 
   .auth-social-facebook {
@@ -56,12 +56,12 @@
     @apply w-full p-3 bg-gray-200 border border-gray-300 rounded-md font-semibold text-[15px] hover:bg-gray-300 transition;
   }
 
-  .auth-error {
-    @apply text-red-500 text-sm mb-3;
-  }
-
   .auth-links {
     @apply mt-6 text-center;
+  }
+
+  .auth-error {
+    @apply text-red-500 text-sm mb-3;
   }
 
   .auth-link-secondary {

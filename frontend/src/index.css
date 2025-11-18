@@ -563,9 +563,6 @@ aspect-ratio: 16 / 9;
 /* ========== PRIVACY POLICY PAGE ========== */
 .privacy-page {
     @apply min-h-screen bg-black text-white flex justify-center py-16 px-6;
-    background-image: url("/src/assets/stars.png");
-    background-size: cover;
-    background-position: center;
   }
 
   /* Container central */

@@ -82,7 +82,7 @@ async function main() {
       description: "Heróis contra heróis em batalhas épicas.",
       price: 17.99,
       discount: 80,
-      cover: "/games/InjusticeGodAUs.jpg",
+      cover: "/games/InjusticeGAU.jpg",
       video: "https://www.youtube.com/embed/1yBJjENd3RY"
     },
 

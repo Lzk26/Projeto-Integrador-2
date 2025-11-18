@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { getCart, removeFromCart, clearCart } from "../../services/cart";
 import { Link, useNavigate } from "react-router-dom";
+import './Cart.css'
 
 export default function Cart() {
   const [cart, setCart] = useState(null);
@@ -71,6 +72,8 @@ export default function Cart() {
                 </div>
               </div>
             ))}
+
+            
           </div>
         ) : (
           <p className="mt-4 text-sm text-gray-200">
@@ -120,11 +123,11 @@ export default function Cart() {
 
               {hasItems && (
                 <button
-                  className="text-xs text-gray-200 underline mt-2"
                   onClick={handleClear}
-                >
+                  className="cart-clear-btn">
                   Limpar carrinho
                 </button>
+
               )}
 
               <Link

@@ -1,18 +1,24 @@
-// src/pages/SignUp/index.jsx
-import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa";
+import { useState } from "react";
+import "./SignUp.css";
+import trapdoorBanner from "/src/assets/trapdoorbanner.png";
+import { FaArrowLeft, FaFacebookF, FaApple } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 export default function SignUp() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState("");
+
+  const [username, setUser] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [erro, setErro] = useState("");
+  const [confirmar, setConfirmar] = useState("");
+  const [error, setError] = useState("");
 
   async function handleRegister(e) {
     e.preventDefault();
-    setErro("");
+    setError("");
+
+    if (senha !== confirmar) return setError("As senhas não coincidem.");
 
     const res = await fetch("http://localhost:3333/register", {
       method: "POST",
@@ -23,75 +29,99 @@ export default function SignUp() {
     const data = await res.json();
 
     if (!res.ok) {
-      setErro(data.error);
+      setError(data.error);
       return;
     }
 
-    alert("Conta criada com sucesso!");
-    navigate("/signin");
+    navigate("/login");
   }
 
   return (
-    <div className="LoginPage">
-      <div className="LoginForm">
-        <Link to="/" className="LoginExit flex items-center gap-2">
-          <FaArrowLeft /> Voltar
-        </Link>
+    <div className="auth-wrapper">
 
-        <form onSubmit={handleRegister}>
-          <h2 className="LoginTitle">Criar Conta</h2>
+      {/* Botão voltar */}
+      <Link to="/" className="auth-back-btn">
+        <FaArrowLeft /> Voltar
+      </Link>
 
-          {erro && <p className="LoginErrorGlobal">{erro}</p>}
+      <div className="auth-left">
+        <div className="auth-card">
 
-          <label className="LoginLabel">Usuário</label>
-          <input
-            type="text"
-            className="LoginInput"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
+          <img src="/Logo.png" className="auth-logo" />
 
-          <label className="LoginLabel">Email</label>
-          <input
-            type="email"
-            className="LoginInput"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <h2 className="auth-title">Criar conta</h2>
 
-          <label className="LoginLabel mt-2">Senha</label>
-          <input
-            type="password"
-            className="LoginInput"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            required
-          />
+          <form onSubmit={handleRegister}>
 
-          <button className="LoginButton" type="submit">
-            Criar conta
-          </button>
+            <input
+              type="email"
+              placeholder="E-mail"
+              className="auth-input"
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-          <p className="text-sm text-center mt-6 text-gray-500">
-            Já possui conta?
-            <Link
-              to="/signin"
-              className="text-purple-600 ml-1 hover:underline"
-            >
+            <input
+              type="text"
+              placeholder="Nome de usuário"
+              className="auth-input"
+              onChange={(e) => setUser(e.target.value)}
+            />
+
+            <input
+              type="password"
+              placeholder="Senha"
+              className="auth-input"
+              onChange={(e) => setSenha(e.target.value)}
+            />
+
+            <input
+              type="password"
+              placeholder="Confirmar senha"
+              className="auth-input"
+              onChange={(e) => setConfirmar(e.target.value)}
+            />
+
+            {error && <p className="auth-error">{error}</p>}
+
+            {/* Botões sociais */}
+            <button type="button" className="auth-social-btn auth-social-facebook">
+              <FaFacebookF /> <span>Facebook</span>
+            </button>
+
+            <button type="button" className="auth-social-btn auth-social-google">
+              <FcGoogle /> <span>Google</span>
+            </button>
+
+            <button type="button" className="auth-social-btn auth-social-apple">
+              <FaApple /> <span>Apple</span>
+            </button>
+
+            <div className="auth-remember">
+              <input type="checkbox" id="save" />
+              <label htmlFor="save">Salvar dados</label>
+            </div>
+
+            <button type="submit" className="auth-submit">
+              Cadastrar →
+            </button>
+
+          </form>
+
+          <div className="auth-links">
+            <p className="auth-link-secondary">Já tem uma conta?</p>
+
+            <Link to="/login" className="auth-link-primary">
               Entrar
             </Link>
-          </p>
-        </form>
+          </div>
+
+        </div>
       </div>
 
-      <div
-        className="LoginArte"
-        style={{
-          backgroundImage: "url('/src/assets/trapdoorbanner.png')",
-        }}
-      />
+      <div className="auth-right">
+        <img src={trapdoorBanner} className="auth-banner" />
+      </div>
+
     </div>
   );
 }

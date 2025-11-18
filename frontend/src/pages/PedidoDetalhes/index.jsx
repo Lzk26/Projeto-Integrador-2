@@ -1,7 +1,7 @@
-// src/pages/PedidoDetalhes/index.jsx
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getOrderById } from "../../services/orders";
+import "./PedidoDetalhes.css";
 
 export default function PedidoDetalhes() {
   const { id } = useParams();
@@ -17,68 +17,66 @@ export default function PedidoDetalhes() {
 
   if (!order) {
     return (
-      <div className="min-h-screen pt-24 flex items-center justify-center text-white">
-        <h1>Carregando pedido...</h1>
+      <div className="order-center">
+        <h1 className="order-loading">Carregando pedido...</h1>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen pt-24 text-white max-w-4xl mx-auto px-4">
-      <h1 className="text-2xl font-bold mb-2">
-        Detalhes do Pedido #{order.id}
-      </h1>
+    <div className="order-page">
+      <h1 className="order-title">Pedido #{order.id}</h1>
 
-      <p className="text-sm text-gray-300">
-        <strong>Data:</strong>{" "}
-        {new Date(order.createdAt).toLocaleDateString("pt-BR")}
-      </p>
-      <p className="text-sm text-gray-300 mb-4">
-        <strong>Total:</strong> R$ {Number(order.total).toFixed(2)}
-      </p>
+      <div className="order-card">
 
-      <h2 className="text-xl font-semibold mt-4 mb-3">Jogos comprados</h2>
+        {/* Cabeçalho */}
+        <div className="order-header">
+          <p className="order-date">
+            <strong>Data:</strong>{" "}
+            {new Date(order.createdAt).toLocaleDateString("pt-BR")}
+          </p>
 
-      <div className="flex flex-col gap-4">
-        {order.items.map((item) => (
-          <div
-            key={item.id}
-            className="flex gap-4 bg-black/70 rounded-xl p-4 items-center"
-          >
-            <img
-              src={item.game.cover}
-              alt={item.game.title}
-              className="w-40 h-24 rounded-lg object-cover"
-            />
+          <p className="order-total">
+            <strong>Total:</strong> R$ {Number(order.total).toFixed(2)}
+          </p>
+        </div>
 
-            <div className="flex-1">
-              <p className="text-lg font-semibold">{item.game.title}</p>
-              <p className="text-sm text-gray-300 mt-1">
-                <strong>Preço:</strong> R$ {Number(item.price).toFixed(2)}
-              </p>
+        {/* Jogos */}
+        <div className="order-games">
+          {order.items.map((item) => (
+            <div key={item.id} className="order-game-item">
+              <img
+                src={item.game.cover}
+                alt={item.game.title}
+                className="order-game-img"
+              />
 
-              <Link
-                to={`/jogo/${item.game.id}`}
-                className="mt-2 inline-block text-purple-400 hover:text-purple-300 underline text-sm"
-              >
-                Ver jogo →
-              </Link>
+              <div className="order-game-info">
+                <p className="order-game-title">{item.game.title}</p>
+
+                <p className="order-game-price">
+                  Preço: R$ {Number(item.price).toFixed(2)}
+                </p>
+
+                <Link
+                  to={`/jogo/${item.game.id}`}
+                  className="order-game-link"
+                >
+                  Ver jogo →
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      <div className="mt-8 flex gap-4">
-        <Link
-          to="/pedidos"
-          className="text-purple-400 hover:text-purple-300 underline text-sm"
-        >
+      {/* Navegação inferior */}
+      <div className="order-footer">
+        <Link to="/pedidos" className="order-return">
           ← Voltar para meus pedidos
         </Link>
-        <Link
-          to="/usuario"
-          className="text-purple-400 hover:text-purple-300 underline text-sm"
-        >
+
+        <Link to="/usuario" className="order-return">
           Ir para minha conta
         </Link>
       </div>

@@ -31,7 +31,7 @@ export default function GameCard({ game }) {
       </div>
 
       {/* Conteúdo */}
-      <div className="game-card-content">
+      <div className="game-card-content bg-gradient-to-r from-[#5E17EB] to-[#350D85]">
 
         {/* Título */}
         <h3 className="game-card-title">{game.title}</h3>

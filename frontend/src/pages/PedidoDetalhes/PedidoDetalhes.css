@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+  /* ======================= PAGE ======================= */
+  .order-page {
+    @apply min-h-screen pt-28 px-6 text-white max-w-4xl mx-auto;
+  }
+
+  .order-center {
+    @apply min-h-screen pt-28 flex items-center justify-center text-white;
+  }
+
+  .order-title {
+    @apply text-3xl font-bold mb-8;
+  }
+
+  .order-loading {
+    @apply text-xl text-gray-300;
+  }
+
+  /* ======================= CARD (GLASS PREMIUM) ======================= */
+  .order-card {
+    @apply bg-white/5 backdrop-blur-md
+           border border-purple-700/30 
+           shadow-[0_0_25px_rgba(94,23,235,0.25)]
+           rounded-xl p-6 mb-10
+           transition hover:shadow-[0_0_35px_rgba(94,23,235,0.45)]
+           hover:border-purple-600/40;
+  }
+
+  /* ======================= HEADER ======================= */
+  .order-header {
+    @apply flex items-center justify-between mb-6;
+  }
+
+  .order-date,
+  .order-total {
+    @apply text-sm text-gray-300;
+  }
+
+  /* ======================= GAMES ======================= */
+  .order-games {
+    @apply flex flex-col gap-5;
+  }
+
+  .order-game-item {
+    @apply flex items-center gap-5 bg-white/5 
+           border border-purple-700/20 
+           rounded-xl p-4 transition hover:bg-purple-900/20;
+  }
+
+  .order-game-img {
+    @apply w-32 h-20 rounded-lg object-cover shadow-lg;
+  }
+
+  .order-game-info {
+    @apply flex-1;
+  }
+
+  .order-game-title {
+    @apply text-lg font-semibold text-white;
+  }
+
+  .order-game-price {
+    @apply text-sm text-gray-300 mt-1;
+  }
+
+  .order-game-link {
+    @apply mt-2 inline-block text-purple-400 hover:text-purple-300 
+           underline text-sm transition;
+  }
+
+  /* ======================= FOOTER BUTTONS ======================= */
+  .order-footer {
+    @apply flex items-center justify-between mt-8;
+  }
+
+  .order-return {
+    @apply text-purple-400 hover:text-purple-300 text-sm underline transition;
+  }
+
+}

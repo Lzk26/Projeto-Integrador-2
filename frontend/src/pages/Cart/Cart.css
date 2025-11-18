@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+  .cart-clear-btn {
+    @apply flex items-center justify-center gap-2 
+           bg-purple-900/30 text-purple-300 
+           border border-purple-700/40
+           px-4 py-2 rounded-md text-sm font-medium
+           hover:bg-purple-800/40 hover:text-white hover:border-purple-500
+           transition cursor-pointer;
+  }
+
+}

@@ -1,6 +1,10 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { FaShoppingCart } from "react-icons/fa";
+
 import { getGameById } from "../../services/api";
+import { addToCart } from "../../services/cart";
+
 import "./GamePage.css";
 
 export default function GamePage() {
@@ -8,6 +12,28 @@ export default function GamePage() {
   const [game, setGame] = useState(null);
   const [zoom, setZoom] = useState(null);
 
+  const navigate = useNavigate();
+
+  // ================================
+  // Adicionar ao carrinho
+  // ================================
+  async function handleAddToCart() {
+    if (!game) return;
+
+    const res = await addToCart(game.id);
+
+    if (res.error) {
+      alert(res.error);
+      return;
+    }
+
+    alert("Jogo adicionado ao carrinho!");
+    navigate("/carrinho");
+  }
+
+  // ================================
+  // Carregar jogo
+  // ================================
   useEffect(() => {
     async function loadGame() {
       const data = await getGameById(id);
@@ -30,7 +56,6 @@ export default function GamePage() {
 
   return (
     <div className="game-page">
-
       <div className="game-wrapper">
 
         {/* ================== VÍDEO + INFO ================== */}
@@ -56,9 +81,30 @@ export default function GamePage() {
 
             <p className="game-price">R$ {Number(game.price).toFixed(2)}</p>
 
-            <Link to="/pagamento">
-              <button className="buy-button">Comprar</button>
-            </Link>
+            {/* ================== BOTÕES DE COMPRA ================== */}
+            <div className="flex items-center gap-3 mt-3 w-full">
+              <div className="flex items-center justify-between w-full gap-3">
+
+                {/* Comprar → vai para pagamento */}
+                <button
+                  onClick={() => navigate("/pagamento")}
+                  className="bg-purple-600 hover:bg-purple-700 text-white w-full py-2 rounded-md text-sm font-medium transition"
+                >
+                  Comprar
+                </button>
+
+                {/* Adicionar ao carrinho */}
+                <button
+                  title="Adicionar ao carrinho"
+                  onClick={handleAddToCart}
+                  className="gp-cart-btn"
+                >
+                  <FaShoppingCart className="gp-cart-icon" />
+                </button>
+
+              </div>
+            </div>
+
           </div>
         </div>
 

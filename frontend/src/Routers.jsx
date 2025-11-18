@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import GamePage from "./pages/GamePage";
 import User from "./pages/UserPage";
-import Payment from "./pages/Payment";
+import Payment from "./pages/payment";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
@@ -19,7 +19,7 @@ export default function Routers() {
     <Routes>
       <Route path="/" element={<Home />} />
 
-      <Route path="/signin" element={<SignIn />} />
+      <Route path="/Login" element={<SignIn />} />
       <Route path="/cadastrar" element={<SignUp />} />
 
       <Route

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getMe } from "../../services/user.js";
 import { getOrders } from "../../services/orders.js";
 import { Link } from "react-router-dom";
+import userDefault from "../../assets/placeholder_avatar.jpg";
 import "./UserPage.css";
 
 export default function UserPage() {
@@ -34,11 +35,12 @@ export default function UserPage() {
       <div className="user-topbar">
         <div className="top-left">
           <div className="user-identity">
-            <img
-              src="/src/assets/userdefault.png"
+           <img
+              src={userDefault}
               alt="Avatar do usuário"
               className="user-avatar"
-            />
+           />
+
             <div>
               <h2 className="user-name">{user.username}</h2>
               <p className="user-info-text">{user.email}</p>

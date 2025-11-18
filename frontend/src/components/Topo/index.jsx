@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import logo from "/Logo.png"; // serve da pasta public
 import search from "../../assets/search.png";
 import cart from "../../assets/Cart.png";
 import user from "../../assets/User.png";
@@ -13,7 +12,7 @@ export default function Topo() {
     <header className="topo">
       {/* 🔹 Logo */}
       <Link to="/" className="logo-area">
-        <img src={logo} alt="Trapdoor Logo" className="logo" />
+       <img src="/Logo.png" alt="Trapdoor Logo" className="logo" />
         <h1 className="logo-text">Trapdoor</h1>
       </Link>
 
@@ -28,7 +27,7 @@ export default function Topo() {
         <Link to="/usuario" className="menu-link">
           Usuário
         </Link>
-        <Link to="/signin" className="menu-link">
+        <Link to="/login" className="menu-link">
           Login
         </Link>
       </nav>

@@ -1,5 +1,4 @@
 import { FaInstagram, FaTiktok, FaDiscord, FaYoutube, FaTwitter, FaFacebook } from 'react-icons/fa';
-import logo from '/public/Logo.png';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
@@ -51,7 +50,7 @@ export default function Footer() {
 
           {/* Quadrado branco atrás da logo (Vite: se o arquivo estiver em /public, use /Logo.png) */}
           <div className="logo-box">
-            <img src={logo} alt="Trapdoor Logo" className="logo-img"/>
+            <img src="/Logo.png" alt="Trapdoor Logo" className="logo-img" />
           </div>
 
           <p className="text-gray-300">© 2024 - 2025 Trapdoor Ltda.</p>
@@ -69,3 +68,4 @@ export default function Footer() {
     </footer>
   );
 }
+
