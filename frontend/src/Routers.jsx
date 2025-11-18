@@ -19,7 +19,7 @@ export default function Routers() {
     <Routes>
       <Route path="/" element={<Home />} />
 
-      <Route path="/Login" element={<SignIn />} />
+      <Route path="/login" element={<SignIn />} />
       <Route path="/cadastrar" element={<SignUp />} />
 
       <Route

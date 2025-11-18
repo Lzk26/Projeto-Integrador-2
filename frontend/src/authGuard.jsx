@@ -4,7 +4,7 @@ export default function AuthGuard({ children }) {
   const logged = localStorage.getItem("trapdoor_token");
 
   if (!logged) {
-    return <Navigate to="/signin" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   return children;

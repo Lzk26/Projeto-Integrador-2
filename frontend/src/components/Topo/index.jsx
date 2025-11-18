@@ -89,7 +89,7 @@ export default function Topo() {
         {!user && (
           <button
             className="topo-login-btn"
-            onClick={() => navigate("/signin")}
+            onClick={() => navigate("/login")}
           >
             Entrar
           </button>

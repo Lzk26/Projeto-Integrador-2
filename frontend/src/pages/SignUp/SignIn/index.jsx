@@ -1,9 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import trapdoorBanner from "/src/assets/trapdoorbanner.png";
-import { FaArrowLeft, FaFacebookF, FaApple } from "react-icons/fa";
+import { FaArrowLeft, FaFacebookF, FaApple } from "react-icons/fa"
 import { FcGoogle } from "react-icons/fc";
 import "./Singin.css";
+
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../../firebase";
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -12,6 +15,37 @@ export default function Signin() {
   const [senha, setSenha] = useState("");
   const [error, setError] = useState("");
 
+  // =====================================================
+  // LOGIN COM GOOGLE (CORRIGIDO)
+  // =====================================================
+  async function handleGoogleLogin() {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // salva dados mínimos e pronto
+      localStorage.setItem(
+        "trapdoor_user",
+        JSON.stringify({
+          name: user.displayName,
+          photoURL: user.photoURL,
+          email: user.email,
+        })
+      );
+
+      // identifica que usuário está logado
+      localStorage.setItem("trapdoor_token", "google");
+
+      navigate("/usuario");
+    } catch (err) {
+      console.log(err);
+      alert("Erro ao fazer login com o Google.");
+    }
+  }
+
+  // =====================================================
+  // LOGIN NORMAL (BACKEND)
+  // =====================================================
   async function handleLogin(e) {
     e.preventDefault();
     setError("");
@@ -71,18 +105,16 @@ export default function Signin() {
 
             {error && <p className="auth-error">{error}</p>}
 
-            {/* Botões sociais */}
-            <button type="button" className="auth-social-btn auth-social-facebook">
-              <FaFacebookF /> <span>Facebook</span>
-            </button>
-
-            <button type="button" className="auth-social-btn auth-social-google">
+            {/* Botão Google */}
+            <button
+              type="button"
+              className="auth-social-btn auth-social-google"
+              onClick={handleGoogleLogin}
+            >
               <FcGoogle /> <span>Google</span>
             </button>
 
-            <button type="button" className="auth-social-btn auth-social-apple">
-              <FaApple /> <span>Apple</span>
-            </button>
+            <button type="button" className="auth-social-btn auth-social-facebook"> <FaFacebookF /> <span>Facebook</span> </button> <button type="button" className="auth-social-btn auth-social-apple"> <FaApple /> <span>Apple</span> </button>
 
             <div className="auth-remember">
               <input type="checkbox" id="remember" />
