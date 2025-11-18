@@ -1,68 +1,152 @@
-import { Link } from "react-router-dom";
-import search from "../../assets/search.png";
-import cart from "../../assets/Cart.png";
-import user from "../../assets/User.png";
-import { FaSignInAlt } from "react-icons/fa"; // novo ícone de login
-import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import logo from "/Logo.png";
+import {
+  FaHome,
+  FaShoppingCart,
+  FaSearch,
+} from "react-icons/fa";
 
 export default function Topo() {
-  const [showSearch, setShowSearch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [user, setUser] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Lê token + dados do usuário (nome/foto) do localStorage
+  useEffect(() => {
+    const token = localStorage.getItem("trapdoor_token");
+    const storedUser = localStorage.getItem("trapdoor_user");
+
+    if (token && storedUser) {
+      try {
+        setUser(JSON.parse(storedUser));
+      } catch {
+        setUser({ name: "Usuário" });
+      }
+    } else if (token) {
+      setUser({ name: "Usuário" });
+    } else {
+      setUser(null);
+    }
+
+    setMenuOpen(false);
+  }, [location.pathname]);
+
+  function handleLogout() {
+    localStorage.removeItem("trapdoor_token");
+    localStorage.removeItem("trapdoor_user");
+    setUser(null);
+    setMenuOpen(false);
+    navigate("/signin");
+  }
+
+  function handleSearchSubmit(e) {
+    e.preventDefault();
+    // Futuro: navegar para página de busca, ex:
+    // navigate(`/buscar?query=${encodeURIComponent(searchTerm)}`);
+    console.log("Buscar por:", searchTerm);
+  }
 
   return (
     <header className="topo">
-      {/* 🔹 Logo */}
+      {/* LOGO */}
       <Link to="/" className="logo-area">
-       <img src="/Logo.png" alt="Trapdoor Logo" className="logo" />
+        <img src={logo} alt="Trapdoor Logo" className="logo" />
         <h1 className="logo-text">Trapdoor</h1>
       </Link>
 
-      {/* 🔹 Navegação */}
-      <nav className="menu">
-        <Link to="/" className="menu-link">
-          Início
-        </Link>
-        <Link to="/carrinho" className="menu-link">
-          Carrinho
-        </Link>
-        <Link to="/usuario" className="menu-link">
-          Usuário
-        </Link>
-        <Link to="/login" className="menu-link">
-          Login
-        </Link>
-      </nav>
+      {/* CENTRO: MENU + BUSCA */}
+      <div className="topo-center">
+        <nav className="topo-nav">
+          <Link to="/" className="topo-nav-link">
+            <FaHome className="topo-nav-icon" />
+            <span>Início</span>
+          </Link>
 
-      {/* 🔹 Ícones */}
-      <div className="icons">
-        {/* Busca */}
-        <img
-          src={search}
-          alt="Buscar"
-          className="icon"
-          onClick={() => setShowSearch(!showSearch)}
-        />
-        {showSearch && (
+          <Link to="/carrinho" className="topo-nav-link">
+            <FaShoppingCart className="topo-nav-icon" />
+            <span>Carrinho</span>
+          </Link>
+        </nav>
+
+        <form className="topo-search" onSubmit={handleSearchSubmit}>
+          <FaSearch className="topo-search-icon" />
           <input
             type="text"
             placeholder="Buscar jogos..."
-            className="search-input"
+            className="topo-search-input"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
+        </form>
+      </div>
+
+      {/* DIREITA: LOGIN / USUÁRIO */}
+      <div className="topo-right">
+        {!user && (
+          <button
+            className="topo-login-btn"
+            onClick={() => navigate("/signin")}
+          >
+            Entrar
+          </button>
         )}
 
-        {/* Carrinho */}
-        <Link to="/carrinho">
-          <img src={cart} alt="Carrinho" className="icon" />
-        </Link>
+        {user && (
+          <div className="topo-user-area">
+            <p className="topo-welcome">
+              Seja bem-vindo, <span>{user.name || "Usuário"}</span>
+            </p>
 
-        {/* Usuário */}
-        <Link to="/usuario">
-          <img src={user} alt="Usuário" className="icon" />
-        </Link>
+            <button
+              className="topo-avatar-btn"
+              onClick={() => setMenuOpen((prev) => !prev)}
+            >
+              <img
+                src={
+                  user.photoURL ||
+                  "/UserDefault.png"
+                }
+                alt={user.name || "Usuário"}
+                className="topo-avatar"
+              />
+            </button>
 
-        {/* Login com ícone diferente */}
-        <Link to="/signin">
-          <FaSignInAlt className="icon text-white text-xl opacity-90 hover:opacity-100 transition" />
-        </Link>
+            {menuOpen && (
+              <div className="topo-user-menu">
+                <button
+                  className="topo-user-menu-item"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    navigate("/usuario");
+                  }}
+                >
+                  Perfil
+                </button>
+
+                <button
+                  className="topo-user-menu-item"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    navigate("/pedidos");
+                  }}
+                >
+                  Minhas compras
+                </button>
+
+                <button
+                  className="topo-user-menu-item topo-user-logout"
+                  onClick={handleLogout}
+                >
+                  Sair
+                </button>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </header>
   );
